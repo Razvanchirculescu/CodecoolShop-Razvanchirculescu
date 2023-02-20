@@ -32,6 +32,8 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(legoAlphabetTruck);
         Supplier legoBarbie = new Supplier("DisneyPrincess", "Disney Princess");
         supplierDataStore.add(legoBarbie);
+        Supplier legoFriends = new Supplier("FriendsAliyaSRoom", "Friends Aliya's Room");
+        supplierDataStore.add(legoFriends);
 
         Supplier travelDoll = new Supplier("TravelDoll", "Travel Doll");
         supplierDataStore.add(travelDoll);
@@ -46,10 +48,13 @@ public class Initializer implements ServletContextListener {
                 "Personalized and portable, the LEGO Harry Potter Hogwarts Magical Trunk for ages 8+.", lego, legoHarryPotter));
         productDataStore.add(new Product("LEGO DUPLO My First Alphabet Truck", new BigDecimal("42.40"), "USD",
                 "With the LEGO DUPLO Alphabet Truck, preschoolers can combine creative building.", lego, legoAlphabetTruck));
+        productDataStore.add(new Product("Disney Princess Magic Travel Toy", new BigDecimal("35.01") , "USD",
+                "With Cinderella, Jasmine, Rapunzel Mini Dolls, Toy Horse & Carriage, Flying Rug, Hot Air Balloon for Girls and Boys.", lego, legoBarbie));
         productDataStore.add(new Product("Barbie Travel Doll", new BigDecimal("30.00"), "USD",
                 "Send curious minds around the world with Barbie doll and a travel-themed set inspired by " +
                         "Barbie Dream-house Adventures that comes with a puppy for a travel companion!", doll, travelDoll));
-        productDataStore.add(new Product("Disney Princess Magic Travel Toy", new BigDecimal("35.01") , "USD",
-                "With Cinderella, Jasmine, Rapunzel Mini Dolls, Toy Horse & Carriage, Flying Rug, Hot Air Balloon for Girls and Boys.", lego, legoBarbie));
+        productDataStore.add(new Product("LEGO Friends Aliya's Room", new BigDecimal("18.00"), "USD",
+                "Children aged 6 and up can host a fun sleepover party in LEGO Friends Aliya's rooms. This fun mini " +
+                        "doll play set stimulates imagination and inspires creative stories with the figure.", lego, legoFriends));
     }
 }
