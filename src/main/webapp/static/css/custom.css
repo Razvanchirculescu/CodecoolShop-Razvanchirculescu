@@ -60,3 +60,52 @@
 {
     margin: 0 0 11px;
 }
+
+#products {
+    background: transparent;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+header {
+    padding: 0 30px;
+}
+
+
+#header-auth {
+    float: right;
+    margin: 15px;
+}
+
+#banner {
+    background-image: url("banner.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 200px;
+}
+
+body {
+    background-color: powderblue;
+}
+
+#bt-register #bt-login {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 10px 25px;
+    color: black;
+    background-color: #ddd;
+    text-align: center;
+    cursor: pointer;
+}
+
+#bt-register #bt-login {
+    background-color: #555;
+    color: white;
+}
+
