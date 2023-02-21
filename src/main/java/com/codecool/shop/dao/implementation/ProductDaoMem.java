@@ -16,6 +16,7 @@ public class ProductDaoMem implements ProductDao {
     private static ProductDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
+    SINGELTONE !!!
      */
     private ProductDaoMem() {
     }
@@ -29,7 +30,7 @@ public class ProductDaoMem implements ProductDao {
 
     @Override
     public void add(Product product) {
-        product.setId(data.size() + 1);
+        product.setId(data.get(data.size()-1).getId() + 1);
         data.add(product);
     }
 
