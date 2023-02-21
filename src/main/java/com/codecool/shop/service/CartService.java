@@ -2,6 +2,9 @@ package com.codecool.shop.service;
 
 import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.model.Cart;
+import com.codecool.shop.model.Product;
+
+import java.util.List;
 
 public class CartService {
 
@@ -11,7 +14,7 @@ public class CartService {
         this.cartDao = cartDao;
     }
 
-    public CartDao getCartDao() {
-        return cartDao;
+    public List<Product> getCartProducts() {
+        return cartDao.getAll();
     }
 }

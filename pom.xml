@@ -50,7 +50,7 @@
                      <reload>automatic</reload>
                      <scanIntervalSeconds>10</scanIntervalSeconds>
                     <httpConnector>
-                        <!--host>localhost</host-->
+<!--                        host>localhost</host-->
                         <port>8888</port>
                     </httpConnector>
                 </configuration>
