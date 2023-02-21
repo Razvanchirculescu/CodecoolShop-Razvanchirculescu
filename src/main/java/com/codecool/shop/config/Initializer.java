@@ -34,13 +34,20 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(legoBarbie);
         Supplier legoFriends = new Supplier("FriendsAliyaSRoom", "Friends Aliya's Room");
         supplierDataStore.add(legoFriends);
-
         Supplier travelDoll = new Supplier("TravelDoll", "Travel Doll");
         supplierDataStore.add(travelDoll);
+        Supplier barbieDoll = new Supplier("BarbieDoll", "Barbie Doll");
+        supplierDataStore.add(barbieDoll);
+        Supplier cars = new Supplier("Cars", "Cars");
+        supplierDataStore.add(cars);
+
 
         ProductCategory lego = new ProductCategory("Lego", "Toys", "A line of plastic construction toys");
         productCategoryDataStore.add(lego);
         ProductCategory doll = new ProductCategory("Doll", "Toys", "Toy for girls");
+        productCategoryDataStore.add(doll);
+        ProductCategory car = new ProductCategory("Car", "Toy","Toys for boy");
+        productCategoryDataStore.add(car);
 
         productDataStore.add(new Product("LEGO Star Wars - Dark Trooper Attack", new BigDecimal("68.99"), "USD",
                 "set for Luke Skywalker vs. Dark Troopers battles – Fans can relive Luke Skywalker’s return.", lego, legoStarWars));
@@ -56,5 +63,11 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("LEGO Friends Aliya's Room", new BigDecimal("18.00"), "USD",
                 "Children aged 6 and up can host a fun sleepover party in LEGO Friends Aliya's rooms. This fun mini " +
                         "doll play set stimulates imagination and inspires creative stories with the figure.", lego, legoFriends));
+        productDataStore.add(new Product("Barbie GBK12 Portable Wardrobe", new BigDecimal("29.08"), "USD",
+                "Barbie's dream wardrobe testifies style inside and outside with the included Barbie doll, fashion " +
+                        "and accessories. The pink wardrobe has two clear cabinet doors.", doll, barbieDoll));
+        productDataStore.add(new Product("20 Metal Pull Back Mini Toy Cars", new BigDecimal("29.99"), "USD",
+                "SUPER PACK. Our pull-back model model toy cars from model building includes a total of 20 toy cars: " +
+                        "police cars, fire engines, bulldozers, dump trucks, mountain cars and other.", car, cars));
     }
 }

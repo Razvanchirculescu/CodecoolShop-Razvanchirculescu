@@ -40,34 +40,51 @@
 </div>
 
 <div class="container">
-<!--    <div class="card">-->
-<!--        <strong th:text="${category.name}">Category Title</strong>-->
-<!--    </div>-->
-
-    <div id="products" class="row row-cols-4 row-cols-md-2">
-        <div class="col col-sm-4 col-md-8 col-lg d-flex align-items-stretch" th:each="prod,iterStat : ${products}">
-            <div class="card" style="width: 14rem;">
-                <img class="card-img-top" src="http://placehold.it/400x250/000/fff"
-                     th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" style="width:80%"/>
-                <div class="card-header">
-                    <h5 class="card-title" th:text="${prod.name}">Product name</h5>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+    <!--    <div class="card">-->
+    <!--        <strong th:text="${category.name}">Category Title</strong>-->
+    <!--    </div>-->
+    <div id="navbar">
+        <ul class="my-navbar">
+            <li><a href="#">Products</a></li>
+            <ul><a href="#">Category</a>
+                <button class="w3-button">Category</button>
+                    <li><a href="#" class="w3-bar-item w3-button">Link 1</a></>
+                    <a href="#" class="w3-bar-item w3-button">Link 2</a>
+                    <a href="#" class="w3-bar-item w3-button">Link 3</a>
+            </ul>
+            <li><a href="#">Supplier</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
+    <div class="grid-container">
+        <div id="products" class="row row-cols-4 row-cols-md-2">
+            <div class="col col-sm-4 col-md-8 col-lg d-flex align-items-stretch"
+                 th:each="prod,iterStat : ${allProducts}">
+                <div class="card" style="width: 14rem;">
+                    <img class="card-img-top" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" style="width:80%"/>
+                    <div class="card-header">
+                        <h5 class="card-title" th:text="${prod.name}">Product name</h5>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
                     </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <a class="btn btn-success" href="#">Add to cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
 </div>
-
-<div th:replace="footer.html :: copy"></div>
-
+<div class="footer">
+    <div th:replace="footer.html :: copy"></div>
+</div>
 </body>
 </html>
