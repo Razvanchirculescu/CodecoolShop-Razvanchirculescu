@@ -42,15 +42,21 @@ public class CartDaoMem implements CartDao {
 
 
     @Override
+    public void removeAll () {
+        this.dataMap = null;
+    }
 //    public void remove(int id) {
 //        data.remove(find(id));
 //    }
-    public void remove () {
 
+
+    public void removeOne (Product product) {
+        this.dataMap.remove(product);
     }
 
     @Override
-    public List<Product> getAll() {
-        return data;
+    public HashMap<Product, Integer> getAll() {
+        return dataMap;
     }
+
 }

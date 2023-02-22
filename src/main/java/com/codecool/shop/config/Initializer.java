@@ -49,6 +49,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(product3);
 
 
+
         Cart cart1 = new Cart("cart1");
         cart1.addtoCart(product1);
         cart1.addtoCart(product2);
@@ -59,6 +60,8 @@ public class Initializer implements ServletContextListener {
         cartDao.add(product1);
         cartDao.add(product2);
         cartDao.add(product3);
+        cartDao.add(product1);
+        cartDao.add(product1);
 
     }
 }

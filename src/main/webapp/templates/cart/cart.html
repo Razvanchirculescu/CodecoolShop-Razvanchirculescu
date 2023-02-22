@@ -34,16 +34,25 @@
             </thead>
             <tbody>
 
-                <div class="table_cart" th:each="prodC,iterStat : ${cartProduct}">
-                    <tr >
+<!--            <tr th:each="element : ${catsAndItems}">-->
+<!--              <td th:text="${element.key}">keyvalue</td>-->
+
+<!--            <tr th:each="instance : ${analysis.instanceMap}">-->
+<!--                <td th:text="${instance.key}">keyvalue</td>-->
+<!--                <td th:text="${instance.value.numOfData}">num</td>-->
+<!--            </tr>-->
+
+
+                <div class="table_cart" th:each="prodCart : ${cartProduct}">
+                    <tr>
                       <td class="p-4">
                         <div class="media align-items-center">
                         <!--<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
                           <img src="/static/img/avatar1_copy.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                           <div class="media-body">
-                            <a href="#" class="d-block text-dark" th:text="${prodC.name}">Product 1</a>
+                            <a href="#" class="d-block text-dark" th:text="${prodCart.key.name}">Product 1</a>
                             <small>
-                              <span class="text-muted" th:text="${prodC.description}">Color:</span>
+                              <span class="text-muted" th:text="${prodCart.key.description}">Color:</span>
 <!--                              <span class="ui-product-color ui-product-color-sm align-text-bottom" style="background:#e81e2c;"></span> &nbsp;-->
 <!--                              <span class="text-muted">Size: </span> EU 37 &nbsp;-->
 <!--                              <span class="text-muted">Ships from: </span> China-->
@@ -51,9 +60,15 @@
                           </div>
                         </div>
                       </td>
-                      <td class="text-right font-weight-semibold align-middle p-4" th:text="${#numbers.formatDecimal(prodC.getDefaultPrice(), 1, 'DEFAULT', 2, 'DEFAULT') +' '+ prodC.getDefaultCurrency}">$57.55</td>
-                      <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>
-                      <td class="text-right font-weight-semibold align-middle p-4">$115.1</td>
+<!--                        ${#numbers.formatDecimal(prodCart.key.getDefaultPrice(), 1, 'DEFAULT', 2, 'DEFAULT') +' '+ -->
+<!--                        +' '+ prodCart.key.defaultCurrency-->
+                      <td class="text-right font-weight-semibold align-middle p-4" th:text="${prodCart.key.defaultPrice}">$57.55</td>
+                      <td class="text-right font-weight-semibold align-middle p-4" th:text="${prodCart.value}"></td>
+<!--                      <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>-->
+<!--                        th:with="var=${prodCart.key.defaultPrice * prodCart.value}"-->
+<!--                        <p th:with="var=${prodCart.key.defaultPrice * prodCart.value}"></p>-->
+<!--                        th:text="${var}-->
+                        <td class="text-right font-weight-semibold align-middle p-4"></td>
                       <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</a></td>
                     </tr>
                 </div>

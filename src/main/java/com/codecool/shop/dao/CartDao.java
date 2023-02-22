@@ -13,7 +13,7 @@ public interface CartDao {
 
 //    Product find(Product id);
 
-    void removeAll (Product product);
+    void removeAll ();
 
     void removeOne (Product product);
 
