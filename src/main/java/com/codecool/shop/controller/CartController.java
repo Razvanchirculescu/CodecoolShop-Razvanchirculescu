@@ -4,6 +4,7 @@ package com.codecool.shop.controller;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.service.CartService;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -23,6 +24,21 @@ public class CartController extends HttpServlet {
 
         CartDao cartDao = CartDaoMem.getInstance();
         CartService cartService = new CartService(cartDao);
+
+
+        String delProductID = req.getParameter("delProductID");
+
+
+        if(delProductID != null) {
+            for(Product product : cartDao.getAll().keySet()) {
+                if (product.getId() ==  Integer.parseInt(delProductID)) {
+                    cartDao.removeOne(product);
+                    resp.sendRedirect("/cart");
+                    break;
+                }
+            }
+        }
+
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

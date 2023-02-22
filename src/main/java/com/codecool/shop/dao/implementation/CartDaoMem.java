@@ -51,7 +51,12 @@ public class CartDaoMem implements CartDao {
 
 
     public void removeOne (Product product) {
-        this.dataMap.remove(product);
+        if (dataMap.get(product)>1) {
+            dataMap.put(product,dataMap.get(product)-1);
+        } else {
+            this.dataMap.remove(product);
+        }
+
     }
 
     @Override

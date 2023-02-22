@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="container px-3 my-5 clearfix">
+  <div id="inner-body" class="container px-3 my-5 clearfix">
     <!-- Shopping cart table -->
     <div class="card">
       <div class="card-header">
@@ -48,7 +48,8 @@
                       <td class="p-4">
                         <div class="media align-items-center">
                         <!--<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
-                          <img src="/static/img/avatar1_copy.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+<!--                          <img src="/static/img/avatar1_copy.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
+                          <img th:attr="src='/static/img/product_' + ${prodCart.key.id} + '.jpg'" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                           <div class="media-body">
                             <a href="#" class="d-block text-dark" th:text="${prodCart.key.name}">Product 1</a>
                             <small>
@@ -60,13 +61,16 @@
 <!--                        ${#numbers.formatDecimal(prodCart.key.getDefaultPrice(), 1, 'DEFAULT', 2, 'DEFAULT') +' '+ -->
 <!--                        +' '+ prodCart.key.defaultCurrency-->
                       <td class="product-price text-right font-weight-semibold align-middle p-4" th:text="${prodCart.key.defaultPrice}">$57.55</td>
-                      <td class="product-quantity text-right font-weight-semibold align-middle p-4" th:text="${prodCart.value}"></td>
+                      <td class="product-quantity text-right font-weight-semibold align-middle p-4">
+                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getValue(this)" th:value="${prodCart.value}"></td>
+<!--                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getValue(this)" th:value="${prodCart.value}"></td>-->
+<!--                        onchange="getValue(this)"-->
 <!--                      <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>-->
 <!--                        th:with="var=${prodCart.key.defaultPrice * prodCart.value}"-->
 <!--                        <p th:with="var=${prodCart.key.defaultPrice * prodCart.value}"></p>-->
 <!--                        th:text="${var}-->
                         <td class="total-mic text-right font-weight-semibold align-middle p-4"></td>
-                      <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</a></td>
+                      <td id="remove-buton" class="text-center align-middle px-0"><a th:href="'/cart?delProductID=' + ${prodCart.key.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</a></td>
                     </tr>
                 </div>
 
@@ -78,12 +82,12 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
           <div class="mt-4">
             <label class="text-muted font-weight-normal">Promocode</label>
-            <input type="text" placeholder="ABC" class="form-control">
+            <input id="promo-code" type="text" placeholder="0%" value="0%" onchange="getValue(this)" class="form-control">
           </div>
           <div class="d-flex">
             <div class="text-right mt-4 mr-5">
               <label class="text-muted font-weight-normal m-0">Discount</label>
-              <div class="text-large"><strong>$20</strong></div>
+              <div id="discount1" class="text-large"><strong>0%</strong></div>
             </div>
             <div class="text-right mt-4">
               <label class="text-muted font-weight-normal m-0">Total price</label>

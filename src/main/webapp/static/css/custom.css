@@ -93,7 +93,12 @@ header {
 
 body {
     background-color: powderblue;
+}
 
+#inner-body{
+    position: absolute;
+    /*margin-left: 5%;*/
+    left: 5%;
 }
 
 .my-navbar{
