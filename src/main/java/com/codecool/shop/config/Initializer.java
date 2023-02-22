@@ -28,6 +28,7 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(legoWorld);
         Supplier duplo = new Supplier("Duplo", "Lego Supplier");
         supplierDataStore.add(duplo);
+        System.out.println(duplo);
         Supplier barbie = new Supplier("Barbie", "Barbie Supplier");
         supplierDataStore.add(barbie);
         Supplier cars = new Supplier("Cars", "Cars");

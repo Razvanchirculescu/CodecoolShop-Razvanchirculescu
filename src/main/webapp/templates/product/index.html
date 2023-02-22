@@ -54,7 +54,7 @@
             </button>
             <div class="dropdown-container">
                 <div th:each="category,iterStat : ${categories}">
-                <div><a th:href="'/Category/' + ${category.name}" th:text="${category.name}"></a></div>
+                <div><a th:href="'/index?category=' + ${category.id}" th:text="${category.name}"></a></div>
                 </div>
             </div>
             <button class="dropdown-btn supplier">Supplier
@@ -62,7 +62,7 @@
             </button>
             <div class="dropdown-container">
                 <div th:each="supplier,iterStat : ${suppliers}">
-                    <div><a th:href="'/Category/' + ${supplier.name}" th:text="${supplier.name}"></a></div>
+                    <div><a th:href="'/index?supplier=' + ${supplier.id}" th:text="${supplier.name}"></a></div>
                 </div>
             </div>
             <a href="#">Contact</a>
