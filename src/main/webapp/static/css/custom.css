@@ -60,3 +60,95 @@
 {
     margin: 0 0 11px;
 }
+
+#products {
+    background: transparent;
+    justify-content: center;
+
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-gap: 10px;
+    padding: 10px;
+
+}
+
+header {
+    padding: 0 30px;
+}
+
+
+#header-auth {
+    float: right;
+    margin: 15px;
+}
+
+#banner {
+    background-image: url("banner.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 200px;
+}
+
+body {
+    background-color: powderblue;
+
+}
+
+#bt-register #bt-login {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 10px 25px;
+    color: black;
+    background-color: #ddd;
+    text-align: center;
+    cursor: pointer;
+}
+
+#bt-register #bt-login {
+    background-color: #555;
+    color: white;
+}
+
+.my-navbar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    height: 100%; /* Full height */
+    position: absolute; /* Make it stick, even on scroll */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    position: relative;
+    width: 600px;
+    margin-left: 30%;
+    left: 20%;
+}
+
+/*.footer {*/
+/*    position: relative;*/
+/*}*/
+   

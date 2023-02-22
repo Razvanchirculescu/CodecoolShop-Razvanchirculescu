@@ -24,19 +24,50 @@ public class Initializer implements ServletContextListener {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
-        //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
-        supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
-        supplierDataStore.add(lenovo);
+        Supplier legoStarWars = new Supplier("StarWars", "Lego Star Wars");
+        supplierDataStore.add(legoStarWars);
+        Supplier legoHarryPotter = new Supplier("HarryPotter", "Lego Harry Potter");
+        supplierDataStore.add(legoHarryPotter);
+        Supplier legoAlphabetTruck = new Supplier("AlphabetTruck", "Lego Alphabet Truck");
+        supplierDataStore.add(legoAlphabetTruck);
+        Supplier legoBarbie = new Supplier("DisneyPrincess", "Disney Princess");
+        supplierDataStore.add(legoBarbie);
+        Supplier legoFriends = new Supplier("FriendsAliyaSRoom", "Friends Aliya's Room");
+        supplierDataStore.add(legoFriends);
+        Supplier travelDoll = new Supplier("TravelDoll", "Travel Doll");
+        supplierDataStore.add(travelDoll);
+        Supplier barbieDoll = new Supplier("BarbieDoll", "Barbie Doll");
+        supplierDataStore.add(barbieDoll);
+        Supplier cars = new Supplier("Cars", "Cars");
+        supplierDataStore.add(cars);
 
-        //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        productCategoryDataStore.add(tablet);
 
-        //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        ProductCategory lego = new ProductCategory("Lego", "Toys", "A line of plastic construction toys");
+        productCategoryDataStore.add(lego);
+        ProductCategory doll = new ProductCategory("Doll", "Toys", "Toy for girls");
+        productCategoryDataStore.add(doll);
+        ProductCategory car = new ProductCategory("Car", "Toy","Toys for boy");
+        productCategoryDataStore.add(car);
+
+        productDataStore.add(new Product("LEGO Star Wars - Dark Trooper Attack", new BigDecimal("68.99"), "USD",
+                "set for Luke Skywalker vs. Dark Troopers battles – Fans can relive Luke Skywalker’s return.", lego, legoStarWars));
+        productDataStore.add(new Product("LEGO Harry Potter Hogwarts Magical Trunk", new BigDecimal("51.99"), "USD",
+                "Personalized and portable, the LEGO Harry Potter Hogwarts Magical Trunk for ages 8+.", lego, legoHarryPotter));
+        productDataStore.add(new Product("LEGO DUPLO My First Alphabet Truck", new BigDecimal("42.40"), "USD",
+                "With the LEGO DUPLO Alphabet Truck, preschoolers can combine creative building.", lego, legoAlphabetTruck));
+        productDataStore.add(new Product("Disney Princess Magic Travel Toy", new BigDecimal("35.01") , "USD",
+                "With Cinderella, Jasmine, Rapunzel Mini Dolls, Toy Horse & Carriage, Flying Rug, Hot Air Balloon for Girls and Boys.", lego, legoBarbie));
+        productDataStore.add(new Product("Barbie Travel Doll", new BigDecimal("30.00"), "USD",
+                "Send curious minds around the world with Barbie doll and a travel-themed set inspired by " +
+                        "Barbie Dream-house Adventures that comes with a puppy for a travel companion!", doll, travelDoll));
+        productDataStore.add(new Product("LEGO Friends Aliya's Room", new BigDecimal("18.00"), "USD",
+                "Children aged 6 and up can host a fun sleepover party in LEGO Friends Aliya's rooms. This fun mini " +
+                        "doll play set stimulates imagination and inspires creative stories with the figure.", lego, legoFriends));
+        productDataStore.add(new Product("Barbie GBK12 Portable Wardrobe", new BigDecimal("29.08"), "USD",
+                "Barbie's dream wardrobe testifies style inside and outside with the included Barbie doll, fashion " +
+                        "and accessories. The pink wardrobe has two clear cabinet doors.", doll, barbieDoll));
+        productDataStore.add(new Product("20 Metal Pull Back Mini Toy Cars", new BigDecimal("29.99"), "USD",
+                "SUPER PACK. Our pull-back model model toy cars from model building includes a total of 20 toy cars: " +
+                        "police cars, fire engines, bulldozers, dump trucks, mountain cars and other.", car, cars));
     }
 }
