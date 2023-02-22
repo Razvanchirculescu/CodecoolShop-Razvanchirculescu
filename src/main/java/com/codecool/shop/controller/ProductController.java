@@ -35,8 +35,6 @@ public class ProductController extends HttpServlet {
 
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
-        System.out.println(categoryParam);
-        System.out.println(supplierParam);
         List<Product> productsToShow = new ArrayList<>();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
@@ -51,7 +49,6 @@ public class ProductController extends HttpServlet {
         }
 
         context.setVariable("category", productService.getProductCategory(1));
-        context.setVariable("products", productService.getProductsForCategory(1));
         context.setVariable("allProducts", productsToShow);
         context.setVariable("categories", productService.getAllCategories());
         context.setVariable("suppliers", productService.getAllSuppliers());

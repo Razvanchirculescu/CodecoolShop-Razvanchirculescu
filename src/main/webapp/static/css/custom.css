@@ -96,22 +96,6 @@ body {
 
 }
 
-#bt-register #bt-login {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 10px 25px;
-    color: black;
-    background-color: #ddd;
-    text-align: center;
-    cursor: pointer;
-}
-
-#bt-register #bt-login {
-    background-color: #555;
-    color: white;
-}
-
 .my-navbar{
     height: 100%; /* Full height */
     width: 200px;
@@ -144,7 +128,7 @@ body {
 
 .dropdown-container {
     display: none;
-    background-color:#f1f1f1;
+    background-color:#555555;
     padding-left: 8px;
 }
 
