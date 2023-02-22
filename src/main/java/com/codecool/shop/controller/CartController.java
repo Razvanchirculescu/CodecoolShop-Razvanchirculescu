@@ -29,7 +29,7 @@ public class CartController extends HttpServlet {
         context.setVariable("cartProduct", cartService.getCartProducts());
 
 
-        engine.process("cart/cart1.html", context, resp.getWriter());
+        engine.process("cart/cart.html", context, resp.getWriter());
 
 
     }

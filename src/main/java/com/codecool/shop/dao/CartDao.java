@@ -4,16 +4,19 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface CartDao {
 
     void add (Product product);
 
-    Product find(int id);
+//    Product find(Product id);
 
-    void remove (int id);
+    void removeAll (Product product);
 
-    List<Product> getAll();
+    void removeOne (Product product);
+
+    HashMap<Product, Integer> getAll();
 
 }
