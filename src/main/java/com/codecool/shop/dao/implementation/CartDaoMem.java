@@ -2,10 +2,10 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,6 +69,16 @@ public class CartDaoMem implements CartDao {
 
         System.out.println(count+"asd");
         return String.valueOf(count);
+    }
+
+    public String getAllProducts() {
+        List<String> list = new ArrayList<>();
+        for (Product p : dataMap.keySet())
+            list.add(p.getName());
+        String allCheckedOutProducts = Arrays.toString(list.toArray()).replace("[", "").replace("]", "");
+
+        System.out.println(allCheckedOutProducts + "  ALL PRODS");
+        return allCheckedOutProducts.toString();
     }
 
     @Override

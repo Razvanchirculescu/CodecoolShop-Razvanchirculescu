@@ -14,26 +14,27 @@
   <h1>Check Out</h1>
   <br/>
   <form action="authorize_payment" method="post">
-    <table>
+
+    <table style="height: auto">
       <tr>
-        <td>Product/Service:</td>
-        <td><input type="text" name="product" value="Test Store Payment" /></td>
+        <th>Product/Service:</th>
+        <td th:text="${products}"></td>
       </tr>
       <tr>
-        <td>Sub Total:</td>
-        <td><input type="text" name="subtotal" th:value="${sum}" /></td>
+        <th>Sub Total:</th>
+        <td><input type="text" name="subtotal" th:value="${sum}" disabled></td>
       </tr>
       <tr>
-        <td>Shipping:</td>
-        <td><input type="text" name="shipping" value="0" /></td>
+        <th>Shipping:</th>
+        <td><input  type="text" name="shipping" value="0" disabled></td>
       </tr>
       <tr>
-        <td>Tax:</td>
-        <td><input type="text" name="tax" value="0" /></td>
+        <th>Tax:</th>
+        <td><input type="text" name="tax" value="0" disabled></td>
       </tr>
       <tr>
-        <td>Total Amount:</td>
-        <td><input type="text" name="total" th:value="${sum}" /></td>
+        <th>Total Amount:</th>
+        <td><input type="text" name="total" th:value="${sum}" disabled></td>
       </tr>
       <tr>
         <td colspan="2" align="center">

@@ -23,6 +23,8 @@ import java.io.IOException;
             WebContext context = new WebContext(req, resp, req.getServletContext());
 
             String sum = CartDaoMem.getInstance().getTotalSum();
+            String products = CartDaoMem.getInstance().getAllProducts();
+            context.setVariable("products", products);
             context.setVariable("sum", sum);
 
             engine.process("checkout/checkout.html", context, resp.getWriter());
