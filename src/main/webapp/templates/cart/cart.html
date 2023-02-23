@@ -49,7 +49,7 @@
                         <div class="media align-items-center">
                         <!--<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
 <!--                          <img src="/static/img/avatar1_copy.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
-                          <img th:attr="src='/static/img/product_' + ${prodCart.key.id} + '.jpg'" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                          <img th:attr="src='/static/img/product_' + ${prodCart.key.id} + '.jpg'" class="d-block ui-w-40 ui-bordered mr-4 cart-img" alt="">
                           <div class="media-body">
                             <a href="#" class="d-block text-dark" th:text="${prodCart.key.name}">Product 1</a>
                             <small>
@@ -100,11 +100,9 @@
           <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
           <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
         </div>
-
       </div>
     </div>
   </div>
   <script src="static/js/cart.js"></script>
 </body>
-<script src="static/js/cart.js"></script>
 </html>
