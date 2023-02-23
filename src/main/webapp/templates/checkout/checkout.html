@@ -17,11 +17,11 @@
     <table>
       <tr>
         <td>Product/Service:</td>
-        <td><input type="text" name="product" value="Next iPhone" /></td>
+        <td><input type="text" name="product" value="Test Store Payment" /></td>
       </tr>
       <tr>
         <td>Sub Total:</td>
-        <td><input type="text" name="subtotal" value="100" /></td>
+        <td><input type="text" name="subtotal" th:value="${sum}" /></td>
       </tr>
       <tr>
         <td>Shipping:</td>
@@ -33,7 +33,7 @@
       </tr>
       <tr>
         <td>Total Amount:</td>
-        <td><input type="text" name="total" value="120" /></td>
+        <td><input type="text" name="total" th:value="${sum}" /></td>
       </tr>
       <tr>
         <td colspan="2" align="center">

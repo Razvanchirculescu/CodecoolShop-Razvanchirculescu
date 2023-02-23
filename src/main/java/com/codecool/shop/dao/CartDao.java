@@ -19,4 +19,5 @@ public interface CartDao {
 
     HashMap<Product, Integer> getAll();
 
+
 }

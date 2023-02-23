@@ -4,6 +4,7 @@ import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,8 +60,20 @@ public class CartDaoMem implements CartDao {
 
     }
 
+    public String getTotalSum() {
+
+        BigDecimal count = new BigDecimal("0");
+       for (Product p : dataMap.keySet())
+           count = count.add(p.getDefaultPrice().multiply(new BigDecimal(dataMap.get(p))));
+
+
+        System.out.println(count+"asd");
+        return String.valueOf(count);
+    }
+
     @Override
     public HashMap<Product, Integer> getAll() {
+        System.out.println(dataMap);
         return dataMap;
     }
 
