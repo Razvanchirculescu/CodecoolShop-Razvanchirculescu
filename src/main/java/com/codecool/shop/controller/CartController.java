@@ -38,6 +38,20 @@ public class CartController extends HttpServlet {
             }
         }
 
+        String addProductID = req.getParameter("addProductID");
+
+        if(addProductID != null) {
+            for(Product product : cartDao.getAll().keySet()) {
+                if (product.getId() ==  Integer.parseInt(addProductID)) {
+                    cartDao.add(product);
+                    resp.sendRedirect("/cart");
+                    break;
+                }
+            }
+        }
+
+
+
 
         String promoCode = req.getParameter("promoCode");
         if(promoCode != null) {

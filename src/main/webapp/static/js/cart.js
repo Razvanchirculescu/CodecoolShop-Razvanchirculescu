@@ -7,16 +7,18 @@ console.log("quantity: ", productQuantity)
 // cartProductTotal = productPrice * productQuantity;
 let totalMic = document.getElementsByClassName("total-mic")
 
+let totalMicSum = 0;
 let totalMicNum = 0;
 
 for(let i=0; i < productPrice.length; i++) {
-    totalMic[i].innerText=parseFloat(productPrice[i].innerHTML)*parseFloat(productQuantity[i].childNodes[1].attributes[4].value);
-    totalMicNum += parseFloat(totalMic[i].innerText);
+    totalMicNum = parseFloat(productPrice[i].innerHTML)*parseFloat(productQuantity[i].childNodes[1].attributes[4].value);
+    totalMic[i].innerText = totalMicNum.toFixed(2);
+    totalMicSum += totalMicNum;
 }
-let response = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalMicNum);
+let response = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalMicSum);
 
 //display the grand total
-document.getElementById("grand-total").innerHTML = totalMicNum.toFixed(2);
+document.getElementById("grand-total").innerHTML = totalMicSum.toFixed(2);
 
 
 
@@ -34,7 +36,7 @@ function getValue(e) {
     document.getElementById("discount1").innerHTML = discountNumber + "%";//display the discount
     //display the grand total with discount
     if (discountNumber >= 0) {
-        document.getElementById("grand-total").innerHTML = "$" + (totalMicNum * (1 - discountNumber / 100)).toFixed(2);
+        document.getElementById("grand-total").innerHTML = "$" + (totalMicSum * (1 - discountNumber / 100)).toFixed(2);
     }
 }
 
@@ -52,6 +54,7 @@ btn.onclick = function () {
     location.assign("/index");
 }
 
+//go to checkout page
 let checkoutBtn=document.getElementById("checkout");
 checkoutBtn.onclick=function () {
     location.assign("/checkout")
