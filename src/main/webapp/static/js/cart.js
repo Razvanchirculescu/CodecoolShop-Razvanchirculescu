@@ -46,10 +46,14 @@ function getCartQuantity(e) {
 
 }
 
-
+//go to main page
 let btn=document.getElementById("back");
 btn.onclick = function () {
     location.assign("/index");
 }
 
+let checkoutBtn=document.getElementById("checkout");
+checkoutBtn.onclick=function () {
+    location.assign("/checkout")
+}
 

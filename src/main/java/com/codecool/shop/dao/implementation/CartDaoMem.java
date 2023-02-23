@@ -16,6 +16,8 @@ public class CartDaoMem implements CartDao {
 
     private static CartDaoMem instance = null;
 
+    private static Integer discount = 0;
+
     private CartDaoMem () {}
 
 
@@ -24,6 +26,15 @@ public class CartDaoMem implements CartDao {
             instance = new CartDaoMem();
         }
         return instance;
+    }
+
+
+    public Integer getDiscount () {
+        return discount;
+    }
+
+    public void setDiscount (Integer discount) {
+        this.discount = discount;
     }
 
     @Override

@@ -39,20 +39,29 @@ public class CartController extends HttpServlet {
         }
 
 
-        String cartQuantityProduct = req.getParameter("getCartQuantityProduct");
-
-        if(cartQuantityProduct != null) {
-            String[] parts = cartQuantityProduct.split("/");
-            int quantity = Integer.parseInt(parts[0]);
-            String idProduct = parts[1];
-            for(Product product : cartDao.getAll().keySet()) {
-                if (product.getId() ==  Integer.parseInt(idProduct)) {
-                    cartDao.addQuantity(product, quantity);
-                    resp.sendRedirect("/cart");
-                    break;
-                }
-            }
+        String promoCode = req.getParameter("promoCode");
+        if(promoCode != null) {
+            cartDao.setDiscount(Integer.parseInt(promoCode));
+            resp.sendRedirect("/cart");
         }
+
+
+
+
+//        String cartQuantityProduct = req.getParameter("getCartQuantityProduct");
+//
+//        if(cartQuantityProduct != null) {
+//            String[] parts = cartQuantityProduct.split("/");
+//            int quantity = Integer.parseInt(parts[0]);
+//            String idProduct = parts[1];
+//            for(Product product : cartDao.getAll().keySet()) {
+//                if (product.getId() ==  Integer.parseInt(idProduct)) {
+//                    cartDao.addQuantity(product, quantity);
+//                    resp.sendRedirect("/cart");
+//                    break;
+//                }
+//            }
+//        }
 
 
 
