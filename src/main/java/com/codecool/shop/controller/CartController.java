@@ -28,7 +28,6 @@ public class CartController extends HttpServlet {
 
         String delProductID = req.getParameter("delProductID");
 
-
         if(delProductID != null) {
             for(Product product : cartDao.getAll().keySet()) {
                 if (product.getId() ==  Integer.parseInt(delProductID)) {
@@ -38,6 +37,47 @@ public class CartController extends HttpServlet {
                 }
             }
         }
+
+        String addProductID = req.getParameter("addProductID");
+
+        if(addProductID != null) {
+            for(Product product : cartDao.getAll().keySet()) {
+                if (product.getId() ==  Integer.parseInt(addProductID)) {
+                    cartDao.add(product);
+                    resp.sendRedirect("/cart");
+                    break;
+                }
+            }
+        }
+
+
+
+
+        String promoCode = req.getParameter("promoCode");
+        if(promoCode != null) {
+            cartDao.setDiscount(Integer.parseInt(promoCode));
+            resp.sendRedirect("/cart");
+        }
+
+
+
+
+//        String cartQuantityProduct = req.getParameter("getCartQuantityProduct");
+//
+//        if(cartQuantityProduct != null) {
+//            String[] parts = cartQuantityProduct.split("/");
+//            int quantity = Integer.parseInt(parts[0]);
+//            String idProduct = parts[1];
+//            for(Product product : cartDao.getAll().keySet()) {
+//                if (product.getId() ==  Integer.parseInt(idProduct)) {
+//                    cartDao.addQuantity(product, quantity);
+//                    resp.sendRedirect("/cart");
+//                    break;
+//                }
+//            }
+//        }
+
+
 
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());

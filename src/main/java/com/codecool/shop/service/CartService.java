@@ -22,4 +22,6 @@ public class CartService {
     public HashMap<Product, Integer> getCartProducts() {
         return cartDao.getAll();
     }
+
+
 }
