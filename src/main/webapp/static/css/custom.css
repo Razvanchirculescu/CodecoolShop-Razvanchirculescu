@@ -64,9 +64,8 @@
 #products {
     background: transparent;
     justify-content: center;
-
     display: grid;
-    grid-template-columns: 320px 320px 320px 320px;
+    grid-template-columns: 250px 250px 250px 250px;
     grid-gap: 10px;
     padding: 10px;
 
@@ -161,6 +160,11 @@ body {
 .card-img-top {
     width: 185px;
     height: 150px;
+}
+
+.cart-img {
+    width: 85px;
+    height: 85px;
 }
 
 .card {
