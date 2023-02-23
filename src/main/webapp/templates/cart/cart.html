@@ -62,7 +62,7 @@
 <!--                        +' '+ prodCart.key.defaultCurrency-->
                       <td class="product-price text-right font-weight-semibold align-middle p-4" th:text="${prodCart.key.defaultPrice}">$57.55</td>
                       <td class="product-quantity text-right font-weight-semibold align-middle p-4">
-                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getValue(this)" th:value="${prodCart.value}"></td>
+                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getCartQuantity(this)" th:value="${prodCart.value}"></td>
 <!--                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getValue(this)" th:value="${prodCart.value}"></td>-->
 <!--                        onchange="getValue(this)"-->
 <!--                      <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>-->
@@ -97,8 +97,8 @@
         </div>
 
         <div class="float-right">
-          <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
-          <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+            <button id="back" type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
+            <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
         </div>
 
       </div>
