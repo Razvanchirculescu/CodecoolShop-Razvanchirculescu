@@ -36,10 +36,10 @@
 <body>
 
 <div id="banner" class="jumbotron text-left">
-<!--    <div id="header-auth">-->
-<!--        <a id="bt-register" href="/register">Register</a>-->
-<!--        <button type="button" id="bt-login">Login</button>-->
-<!--    </div>-->
+    <!--    <div id="header-auth">-->
+    <!--        <a id="bt-register" href="/register">Register</a>-->
+    <!--        <button type="button" id="bt-login">Login</button>-->
+    <!--    </div>-->
 </div>
 
 <div class="container">
@@ -54,7 +54,7 @@
             </button>
             <div class="dropdown-container">
                 <div th:each="category,iterStat : ${categories}">
-                <div><a th:href="'/index?category=' + ${category.id}" th:text="${category.name}"></a></div>
+                    <div><a th:href="'/index?category=' + ${category.id}" th:text="${category.name}"></a></div>
                 </div>
             </div>
             <button class="dropdown-btn supplier">Supplier
@@ -73,20 +73,18 @@
         <div id="products" class="row row-cols-4 row-cols-md-2">
             <div class="col col-sm-4 col-md-8 col-lg d-flex align-items-stretch"
                  th:each="prod,iterStat : ${allProducts}">
-                <div class="card" style="width: 14rem;">
+                <div class="card">
                     <img class="card-img-top" src="http://placehold.it/400x250/000/fff"
-                         th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" style="width:80%"/>
+                         th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" style="width:100%"/>
                     <div class="card-header">
                         <h5 class="card-title" th:text="${prod.name}">Product name</h5>
                         <p class="card-text" th:text="${prod.description}">Product description... </p>
                     </div>
-                    <div class="card-body">
-                        <div class="card-text">
+                    <div class="card-footer mt-auto">
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        </div>
-                        <div class="card-text">
-                            <a class="btn btn-success" th:attr="href='/index?product=' + ${prod.id}">Add to cart</a>
-                        </div>
+                                <a class="btn btn-success" th:attr="href='/index?product=' + ${prod.id}">
+                                    <i class="bi bi-cart4"></i>
+                                </a>
                     </div>
                 </div>
             </div>

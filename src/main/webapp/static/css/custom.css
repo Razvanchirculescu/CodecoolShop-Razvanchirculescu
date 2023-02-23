@@ -66,7 +66,7 @@
     justify-content: center;
 
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-columns: 320px 320px 320px 320px;
     grid-gap: 10px;
     padding: 10px;
 
@@ -97,14 +97,17 @@ body {
 }
 
 .my-navbar{
-    height: 100%; /* Full height */
+    height: 60%; /* Full height */
     width: 200px;
     position: absolute;
-    z-index: 1;
+    z-index: 0;
     margin: 0;
     padding: 0;
     list-style-type: none;
-    background-color: #f1f1f1;
+    background-image:url("nav-image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow-x: hidden;
 }
 
@@ -113,6 +116,9 @@ body {
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
 }
 
 /* Change the link color on hover */
@@ -122,13 +128,11 @@ body {
 }
 
 .active {
-    background-color: green;
     color: white;
 }
 
 .dropdown-container {
     display: none;
-    background-color:#555555;
     padding-left: 8px;
 }
 
@@ -150,9 +154,24 @@ body {
 .grid-container {
     position: relative;
     width: 600px;
-    margin-left: 30%;
+    margin-left: 25%;
     left: 20%;
 }
+
+.card-img-top {
+    width: 185px;
+    height: 150px;
+}
+
+.card {
+    background: rgba(176, 224, 230, 0);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 /*.footer {*/
 /*    position: relative;*/
