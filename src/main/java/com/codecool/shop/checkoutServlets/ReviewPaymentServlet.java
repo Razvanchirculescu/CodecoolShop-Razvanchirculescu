@@ -36,6 +36,7 @@ public class ReviewPaymentServlet extends HttpServlet{
 
             String url = "../WEB-INF/JSP/review.jsp?paymentId=" + paymentId + "&PayerID=" + payerId;
             request.getRequestDispatcher(url).forward(request, response);
+            System.out.println("REVIEW PAYM SERV");
 
         } catch (PayPalRESTException ex) {
             request.setAttribute("errorMessage", ex.getMessage());

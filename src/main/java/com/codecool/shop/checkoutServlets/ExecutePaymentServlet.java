@@ -28,17 +28,19 @@ public class ExecutePaymentServlet extends HttpServlet {
 
             PayerInfo payerInfo = payment.getPayer().getPayerInfo();
             Transaction transaction = payment.getTransactions().get(0);
+            System.out.println(transaction.getAmount());
+            System.out.println(transaction.getItemList());
+
 
             request.setAttribute("payer", payerInfo);
             request.setAttribute("transaction", transaction);
 
             request.getRequestDispatcher("../WEB-INF/JSP/receipt.jsp").forward(request, response);
-            System.out.println("EXECUTE PAYMENT");
+            System.out.println("EXECUTE PAYMENT SERV");
         } catch (PayPalRESTException ex) {
-            request.setAttribute("errorMessage", ex.getMessage());
+            request.setAttribute("../WEB-INF/JSP/errorMessage", ex.getMessage());
             ex.printStackTrace();
             request.getRequestDispatcher("../WEB-INF/JSP/error.jsp").forward(request, response);
         }
     }
-
 }

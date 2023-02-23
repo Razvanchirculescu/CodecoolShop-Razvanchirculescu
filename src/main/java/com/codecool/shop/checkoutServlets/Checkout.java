@@ -23,5 +23,4 @@ import java.io.IOException;
             engine.process("checkout/checkout.html", context, resp.getWriter());
 
         }
-
     }

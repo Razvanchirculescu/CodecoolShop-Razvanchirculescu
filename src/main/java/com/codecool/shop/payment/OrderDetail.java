@@ -15,6 +15,7 @@ public class OrderDetail {
         this.shipping = Float.parseFloat(shipping);
         this.tax = Float.parseFloat(tax);
         this.total = Float.parseFloat(total);
+        System.out.println("ORDER DETAIL");
     }
 
     public String getProductName() {
