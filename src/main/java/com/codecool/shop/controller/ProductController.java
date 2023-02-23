@@ -1,8 +1,10 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
@@ -32,9 +34,15 @@ public class ProductController extends HttpServlet {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
-
+        CartDao cartDataStore = CartDaoMem.getInstance();
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
+        String productParam = req.getParameter("product");
+
+        if(productParam != null) {
+            System.out.println(productParam);
+            cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
+        }
         List<Product> productsToShow = new ArrayList<>();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
@@ -52,11 +60,6 @@ public class ProductController extends HttpServlet {
         context.setVariable("allProducts", productsToShow);
         context.setVariable("categories", productService.getAllCategories());
         context.setVariable("suppliers", productService.getAllSuppliers());
-        // // Alternative setting of the template context
-        // Map<String, Object> params = new HashMap<>();
-        // params.put("category", productCategoryDataStore.find(1));
-        // params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
-        // context.setVariables(params);
         engine.process("product/index.html", context, resp.getWriter());
     }
 
