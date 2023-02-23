@@ -1,4 +1,4 @@
-console.log("merge")
+// console.log("merge")
 
 let dropdown = document.getElementsByClassName("dropdown-btn");
 let i;
@@ -14,3 +14,4 @@ for(i=0; i < dropdown.length; i++) {
         }
     });
 }
+

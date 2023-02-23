@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--<html lang="en"></html>-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"></html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+
+</head>
+
+<body>
+  <div id="inner-body" class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Shopping Cart</h2>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered m-0">
+            <thead>
+            <tr>
+              <!-- Set columns width -->
+              <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
+              <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+              <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+              <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+              <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+            </tr>
+            </thead>
+            <tbody>
+
+<!--            <tr th:each="element : ${catsAndItems}">-->
+<!--              <td th:text="${element.key}">keyvalue</td>-->
+
+<!--            <tr th:each="instance : ${analysis.instanceMap}">-->
+<!--                <td th:text="${instance.key}">keyvalue</td>-->
+<!--                <td th:text="${instance.value.numOfData}">num</td>-->
+<!--            </tr>-->
+
+
+                <div class="table_cart" th:each="prodCart : ${cartProduct}">
+                    <tr>
+                      <td class="p-4">
+                        <div class="media align-items-center">
+                        <!--<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
+<!--                          <img src="/static/img/avatar1_copy.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">-->
+                          <img th:attr="src='/static/img/product_' + ${prodCart.key.id} + '.jpg'" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                          <div class="media-body">
+                            <a href="#" class="d-block text-dark" th:text="${prodCart.key.name}">Product 1</a>
+                            <small>
+                              <span class="text-muted" th:text="${prodCart.key.description}">Color:</span>
+                            </small>
+                          </div>
+                        </div>
+                      </td>
+<!--                        ${#numbers.formatDecimal(prodCart.key.getDefaultPrice(), 1, 'DEFAULT', 2, 'DEFAULT') +' '+ -->
+<!--                        +' '+ prodCart.key.defaultCurrency-->
+                      <td class="product-price text-right font-weight-semibold align-middle p-4" th:text="${prodCart.key.defaultPrice}">$57.55</td>
+                      <td class="product-quantity text-right font-weight-semibold align-middle p-4">
+                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getValue(this)" th:value="${prodCart.value}"></td>
+<!--                          <input id="product-quantity1" type="text" class="form-control text-center" onchange="getValue(this)" th:value="${prodCart.value}"></td>-->
+<!--                        onchange="getValue(this)"-->
+<!--                      <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>-->
+<!--                        th:with="var=${prodCart.key.defaultPrice * prodCart.value}"-->
+<!--                        <p th:with="var=${prodCart.key.defaultPrice * prodCart.value}"></p>-->
+<!--                        th:text="${var}-->
+                        <td class="total-mic text-right font-weight-semibold align-middle p-4"></td>
+                      <td id="remove-buton" class="text-center align-middle px-0"><a th:href="'/cart?delProductID=' + ${prodCart.key.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</a></td>
+                    </tr>
+                </div>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- / Shopping cart table -->
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+          <div class="mt-4">
+            <label class="text-muted font-weight-normal">Promocode</label>
+            <input id="promo-code" type="text" placeholder="0%" value="0%" onchange="getValue(this)" class="form-control">
+          </div>
+          <div class="d-flex">
+            <div class="text-right mt-4 mr-5">
+              <label class="text-muted font-weight-normal m-0">Discount</label>
+              <div id="discount1" class="text-large"><strong>0%</strong></div>
+            </div>
+            <div class="text-right mt-4">
+              <label class="text-muted font-weight-normal m-0">Total price</label>
+              <div id="grand-total" class="text-large"><strong>$1164.65</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-right">
+          <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
+          <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="static/js/cart.js"></script>
+</body>
+<script src="static/js/cart.js"></script>
+</html>
