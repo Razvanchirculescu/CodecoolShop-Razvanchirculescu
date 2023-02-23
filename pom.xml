@@ -45,14 +45,14 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${version.plugin.jetty}</version>
                 <configuration>
-                    <reload>automatic</reload>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <httpConnector>
-                        <!--host>localhost</host-->
-                        <port>8888</port>
-                    </httpConnector>
                     <!-- On some configs this causes shutdown of context on -->
                     <!-- a page load so disabled. -->
+                     <reload>automatic</reload>
+                     <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <httpConnector>
+<!--                        host>localhost</host-->
+                        <port>8888</port>
+                    </httpConnector>
                 </configuration>
             </plugin>
         </plugins>
