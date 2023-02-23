@@ -48,8 +48,11 @@
                     <reload>automatic</reload>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <httpConnector>
+                        <!--host>localhost</host-->
                         <port>8888</port>
                     </httpConnector>
+                    <!-- On some configs this causes shutdown of context on -->
+                    <!-- a page load so disabled. -->
                 </configuration>
             </plugin>
         </plugins>
@@ -63,21 +66,21 @@
             <scope>provided</scope>
         </dependency>
         <!-- See comment at jetty plugin -->
-        <!--         <dependency>-->
-        <!--           <groupId>org.eclipse.jetty</groupId>-->
-        <!--           <artifactId>jetty-io</artifactId>-->
-        <!--           <version>${jetty.version}</version>-->
-        <!--         </dependency>-->
+<!--         <dependency>-->
+<!--           <groupId>org.eclipse.jetty</groupId>-->
+<!--           <artifactId>jetty-io</artifactId>-->
+<!--           <version>${jetty.version}</version>-->
+<!--         </dependency>-->
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf</artifactId>
             <version>${version.thymeleaf}</version>
         </dependency>
-        <dependency>
-            <groupId>com.paypal.sdk</groupId>
-            <artifactId>rest-api-sdk</artifactId>
-            <version>1.14.0</version>
-        </dependency>
+            <dependency>
+                <groupId>com.paypal.sdk</groupId>
+                <artifactId>rest-api-sdk</artifactId>
+                <version>1.14.0</version>
+            </dependency>
 
     </dependencies>
 </project>

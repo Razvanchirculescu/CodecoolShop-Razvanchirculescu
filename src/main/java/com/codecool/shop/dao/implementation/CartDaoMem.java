@@ -17,6 +17,8 @@ public class CartDaoMem implements CartDao {
 
     private static CartDaoMem instance = null;
 
+    private static Integer discount = 0;
+
     private CartDaoMem () {}
 
 
@@ -27,12 +29,26 @@ public class CartDaoMem implements CartDao {
         return instance;
     }
 
+
+    public Integer getDiscount () {
+        return discount;
+    }
+
+    public void setDiscount (Integer discount) {
+        this.discount = discount;
+    }
+
     @Override
 //    public void add(Product product) {
 //        data.add(product);
 //    }
     public void add (Product product) {
         dataMap.merge(product, 1, Integer::sum);
+    }
+
+    @Override
+    public void addQuantity(Product product, Integer quantity) {
+        dataMap.put(product, quantity);
     }
 
 
@@ -58,6 +74,10 @@ public class CartDaoMem implements CartDao {
             this.dataMap.remove(product);
         }
 
+    }
+
+    public void delAllProductID (Product product) {
+        this.dataMap.remove(product);
     }
 
     public String getTotalSum() {

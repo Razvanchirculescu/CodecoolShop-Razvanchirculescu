@@ -11,6 +11,8 @@ public interface CartDao {
 
     void add (Product product);
 
+    void addQuantity(Product product, Integer quantity);
+
 //    Product find(Product id);
 
     void removeAll ();
@@ -19,5 +21,9 @@ public interface CartDao {
 
     HashMap<Product, Integer> getAll();
 
+
+    void setDiscount(Integer discount);
+
+    Integer getDiscount ();
 
 }
