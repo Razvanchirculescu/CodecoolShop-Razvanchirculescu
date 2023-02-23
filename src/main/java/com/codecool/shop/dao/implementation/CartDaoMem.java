@@ -94,7 +94,7 @@ public class CartDaoMem implements CartDao {
         String allCheckedOutProducts = Arrays.toString(list.toArray()).replace("[", "").replace("]", "");
 
         System.out.println(allCheckedOutProducts + "  ALL PRODS");
-        return allCheckedOutProducts.toString();
+        return allCheckedOutProducts;
     }
 
     @Override
