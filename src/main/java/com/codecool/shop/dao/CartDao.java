@@ -9,17 +9,18 @@ import java.util.List;
 
 public interface CartDao {
 
-    void add(Product product);
+    void add (Product product);
 
     void addQuantity(Product product, Integer quantity);
 
 //    Product find(Product id);
 
-    void removeAll();
+    void removeAll ();
 
-    void removeOne(Product product);
+    void removeOne (Product product);
 
     HashMap<Product, Integer> getAll();
+
 
     void setDiscount(Integer discount);
 
