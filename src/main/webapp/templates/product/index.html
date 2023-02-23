@@ -5,6 +5,7 @@
     <meta name="author" content="Codecool"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
+
     <title>Codecool Shop</title>
 
     <!-- Bootstrap components -->
@@ -26,16 +27,17 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
-<div id="banner" class="jumbotron text-left">
+<div id="banner" class="jumbotron text-right">
+    <form action="cart" method="get">
+        <button style="font-size:40px"><i class="fa fa-shopping-cart" ></i></button>
+    </form>
 <!--    <div id="header-auth">-->
 <!--        <a id="bt-register" href="/register">Register</a>-->
 <!--        <button type="button" id="bt-login">Login</button>-->
@@ -101,3 +103,11 @@
 <script src="static/js/style.js"></script>
 </body>
 </html>
+
+
+<!--        payment test button -->
+<!--        <form action="checkout" method="get">-->
+
+<!--           <input type="submit" value="PAY">-->
+
+<!--        </form>-->

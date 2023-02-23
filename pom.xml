@@ -45,14 +45,14 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${version.plugin.jetty}</version>
                 <configuration>
-                    <!-- On some configs this causes shutdown of context on -->
-                    <!-- a page load so disabled. -->
-                     <reload>automatic</reload>
-                     <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <reload>automatic</reload>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
                     <httpConnector>
-<!--                        host>localhost</host-->
+                        <!--host>localhost</host-->
                         <port>8888</port>
                     </httpConnector>
+                    <!-- On some configs this causes shutdown of context on -->
+                    <!-- a page load so disabled. -->
                 </configuration>
             </plugin>
         </plugins>
@@ -76,5 +76,11 @@
             <artifactId>thymeleaf</artifactId>
             <version>${version.thymeleaf}</version>
         </dependency>
+            <dependency>
+                <groupId>com.paypal.sdk</groupId>
+                <artifactId>rest-api-sdk</artifactId>
+                <version>1.14.0</version>
+            </dependency>
+
     </dependencies>
 </project>
