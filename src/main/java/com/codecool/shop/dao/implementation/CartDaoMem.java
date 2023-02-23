@@ -76,6 +76,10 @@ public class CartDaoMem implements CartDao {
 
     }
 
+    public void delAllProductID (Product product) {
+        this.dataMap.remove(product);
+    }
+
     public String getTotalSum() {
 
         BigDecimal count = new BigDecimal("0");

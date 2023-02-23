@@ -22,7 +22,7 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        CartDao cartDao = CartDaoMem.getInstance();
+        CartDaoMem cartDao = CartDaoMem.getInstance();
         CartService cartService = new CartService(cartDao);
 
 
@@ -50,6 +50,17 @@ public class CartController extends HttpServlet {
             }
         }
 
+        String delAllProductIDProductID = req.getParameter("delAllProductID");
+
+        if(delAllProductIDProductID != null) {
+            for(Product product : cartDao.getAll().keySet()) {
+                if (product.getId() ==  Integer.parseInt(delAllProductIDProductID)) {
+                    cartDao.delAllProductID(product);
+                    resp.sendRedirect("/cart");
+                    break;
+                }
+            }
+        }
 
 
 

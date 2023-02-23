@@ -74,7 +74,7 @@
 <!--                        <p th:with="var=${prodCart.key.defaultPrice * prodCart.value}"></p>-->
 <!--                        th:text="${var}-->
                         <td class="total-mic text-right font-weight-semibold align-middle p-4"></td>
-                      <td id="remove-buton" class="text-center align-middle px-0"><a th:href="'/cart?delProductID=' + ${prodCart.key.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</a></td>
+                      <td id="remove-buton" class="text-center align-middle px-0"><a th:href="'/cart?delAllProductID=' + ${prodCart.key.id}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</a></td>
                     </tr>
                 </div>
 
