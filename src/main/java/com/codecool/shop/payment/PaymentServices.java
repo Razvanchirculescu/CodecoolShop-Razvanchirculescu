@@ -3,7 +3,7 @@ package com.codecool.shop.payment;
 
 import java.util.*;
 
-import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.dao.implementation.memory.CartDaoMem;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.*;
 
