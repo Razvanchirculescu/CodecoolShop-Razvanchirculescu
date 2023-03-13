@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS public.supplier;
 CREATE TABLE public.product (
   id serial NOT NULL PRIMARY KEY,
   name text NOT NULL ,
-  defaultPrice text NOT NULL,
+  defaultPrice decimal NOT NULL,
   currencyString text NOT NULL,
   description text NOT NULL,
   productCategory_id integer NOT NULL,

@@ -1,13 +1,9 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.CartDao;
-import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.CartDaoMem;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.dao.implementation.CartDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductDaoJdbc;
+import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
@@ -21,20 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        com.codecool.shop.dao.ProductDao productDataStore = ProductDaoJdbc.getInstance();
+        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
+        com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
-        CartDao cartDataStore = CartDaoMem.getInstance();
+        com.codecool.shop.dao.CartDao cartDataStore = CartDaoJdbc.getInstance();
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");

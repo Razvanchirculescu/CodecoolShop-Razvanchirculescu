@@ -3,8 +3,7 @@ package com.codecool.shop.payment;
 
 import java.util.*;
 
-import com.codecool.shop.dao.CartDao;
-import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.dao.implementation.CartDaoJdbc;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.*;
 
@@ -66,7 +65,7 @@ public class PaymentServices {
         amount.setCurrency("USD");
         amount.setTotal(orderDetail.getTotal());
 
-        CartDaoMem cartDataStore = CartDaoMem.getInstance();
+        CartDaoJdbc cartDataStore = CartDaoJdbc.getInstance();
 
         // amount.setTotal(cartDataStore.getTotalSum());
 

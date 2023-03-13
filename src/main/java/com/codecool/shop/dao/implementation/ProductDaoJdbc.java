@@ -1,7 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
 
-import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -10,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductDaoMem implements ProductDao {
+public class ProductDaoJdbc implements com.codecool.shop.dao.ProductDao {
 
     private List<Product> data = new ArrayList<>();
-    private static ProductDaoMem instance = null;
+    private static ProductDaoJdbc instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
     SINGELTONE !!!
      */
-    private ProductDaoMem() {
+    private ProductDaoJdbc() {
     }
 
-    public static ProductDaoMem getInstance() {
+    public static ProductDaoJdbc getInstance() {
         if (instance == null) {
-            instance = new ProductDaoMem();
+            instance = new ProductDaoJdbc();
         }
         return instance;
     }

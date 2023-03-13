@@ -1,6 +1,5 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.model.Product;
 
 import java.math.BigDecimal;
@@ -9,22 +8,22 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CartDaoMem implements CartDao {
+public class CartDaoJdbc implements com.codecool.shop.dao.CartDao {
 
 
     private List<Product> data = new ArrayList<>();
     private HashMap<Product, Integer> dataMap = new HashMap<>();
 
-    private static CartDaoMem instance = null;
+    private static CartDaoJdbc instance = null;
 
     private static Integer discount = 0;
 
-    private CartDaoMem () {}
+    private CartDaoJdbc() {}
 
 
-    public static CartDaoMem getInstance() {
+    public static CartDaoJdbc getInstance() {
         if (instance == null) {
-            instance = new CartDaoMem();
+            instance = new CartDaoJdbc();
         }
         return instance;
     }
