@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductDaoJdbc implements com.codecool.shop.dao.ProductDao {
+public class ProductDaoMem implements com.codecool.shop.dao.ProductDao {
 
     private List<Product> data = new ArrayList<>();
-    private static ProductDaoJdbc instance = null;
+    private static ProductDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
     SINGELTONE !!!
      */
-    private ProductDaoJdbc() {
+    private ProductDaoMem() {
     }
 
-    public static ProductDaoJdbc getInstance() {
+    public static ProductDaoMem getInstance() {
         if (instance == null) {
-            instance = new ProductDaoJdbc();
+            instance = new ProductDaoMem();
         }
         return instance;
     }

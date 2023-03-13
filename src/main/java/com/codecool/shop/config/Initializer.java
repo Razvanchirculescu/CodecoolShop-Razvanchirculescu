@@ -1,9 +1,9 @@
 package com.codecool.shop.config;
 
 import com.codecool.shop.dao.database.DatabaseManager;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -31,9 +31,9 @@ public class Initializer implements ServletContextListener {
         }
 
 
-        com.codecool.shop.dao.ProductDao productDataStore = ProductDaoJdbc.getInstance();
-        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJdbc.getInstance();
-        com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoJdbc.getInstance();
+        com.codecool.shop.dao.ProductDao productDataStore = ProductDaoMem.getInstance();
+        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         Supplier legoWorld = new Supplier("Lego World", "Lego Supplier");
         supplierDataStore.add(legoWorld);

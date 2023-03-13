@@ -8,22 +8,22 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CartDaoJdbc implements com.codecool.shop.dao.CartDao {
+public class CartDaoMem implements com.codecool.shop.dao.CartDao {
 
 
     private List<Product> data = new ArrayList<>();
     private HashMap<Product, Integer> dataMap = new HashMap<>();
 
-    private static CartDaoJdbc instance = null;
+    private static CartDaoMem instance = null;
 
     private static Integer discount = 0;
 
-    private CartDaoJdbc() {}
+    private CartDaoMem() {}
 
 
-    public static CartDaoJdbc getInstance() {
+    public static CartDaoMem getInstance() {
         if (instance == null) {
-            instance = new CartDaoJdbc();
+            instance = new CartDaoMem();
         }
         return instance;
     }

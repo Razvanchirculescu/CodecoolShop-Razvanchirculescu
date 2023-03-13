@@ -6,19 +6,19 @@ import com.codecool.shop.model.ProductCategory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductCategoryDaoJdbc implements com.codecool.shop.dao.ProductCategoryDao {
+public class ProductCategoryDaoMem implements com.codecool.shop.dao.ProductCategoryDao {
 
     private List<ProductCategory> data = new ArrayList<>();
-    private static ProductCategoryDaoJdbc instance = null;
+    private static ProductCategoryDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
      */
-    private ProductCategoryDaoJdbc() {
+    private ProductCategoryDaoMem() {
     }
 
-    public static ProductCategoryDaoJdbc getInstance() {
+    public static ProductCategoryDaoMem getInstance() {
         if (instance == null) {
-            instance = new ProductCategoryDaoJdbc();
+            instance = new ProductCategoryDaoMem();
         }
         return instance;
     }

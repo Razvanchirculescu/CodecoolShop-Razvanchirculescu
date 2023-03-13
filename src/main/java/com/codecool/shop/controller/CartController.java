@@ -2,7 +2,7 @@ package com.codecool.shop.controller;
 
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.implementation.CartDaoJdbc;
+import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.CartService;
 import org.thymeleaf.TemplateEngine;
@@ -21,7 +21,7 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        CartDaoJdbc cartDao = CartDaoJdbc.getInstance();
+        CartDaoMem cartDao = CartDaoMem.getInstance();
         CartService cartService = new CartService(cartDao);
 
 

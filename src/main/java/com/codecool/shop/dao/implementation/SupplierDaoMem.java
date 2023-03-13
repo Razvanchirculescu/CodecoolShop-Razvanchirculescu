@@ -5,19 +5,19 @@ import com.codecool.shop.model.Supplier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SupplierDaoJdbc implements com.codecool.shop.dao.SupplierDao {
+public class SupplierDaoMem implements com.codecool.shop.dao.SupplierDao {
 
     private List<Supplier> data = new ArrayList<>();
-    private static SupplierDaoJdbc instance = null;
+    private static SupplierDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
      */
-    private SupplierDaoJdbc() {
+    private SupplierDaoMem() {
     }
 
-    public static SupplierDaoJdbc getInstance() {
+    public static SupplierDaoMem getInstance() {
         if (instance == null) {
-            instance = new SupplierDaoJdbc();
+            instance = new SupplierDaoMem();
         }
         return instance;
     }

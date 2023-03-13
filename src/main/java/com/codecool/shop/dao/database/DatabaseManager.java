@@ -1,8 +1,8 @@
 package com.codecool.shop.dao.database;
 
-import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
@@ -12,9 +12,9 @@ import java.sql.SQLException;
 
 public class DatabaseManager {
 
-    private ProductDaoJdbc productDaoJdbc;
-    private ProductCategoryDaoJdbc productCategoryDaoJdbc;
-    private SupplierDaoJdbc supplierDaoJdbc;
+    private ProductDaoMem productDaoMem;
+    private ProductCategoryDaoMem productCategoryDaoMem;
+    private SupplierDaoMem supplierDaoMem;
 
     public void setup() throws SQLException, FileNotFoundException {
         DataSource dataSource = connect();

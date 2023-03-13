@@ -1,7 +1,7 @@
 package com.codecool.shop.checkoutServlets;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.implementation.CartDaoJdbc;
+import com.codecool.shop.dao.implementation.CartDaoMem;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -21,8 +21,8 @@ import java.io.IOException;
             TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
             WebContext context = new WebContext(req, resp, req.getServletContext());
 
-            String sum = CartDaoJdbc.getInstance().getTotalSum();
-            String products = CartDaoJdbc.getInstance().getAllProducts();
+            String sum = CartDaoMem.getInstance().getTotalSum();
+            String products = CartDaoMem.getInstance().getAllProducts();
             context.setVariable("products", products);
             context.setVariable("sum", sum);
 
