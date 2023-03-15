@@ -6,6 +6,7 @@ import com.codecool.shop.dao.implementation.memory.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
 import com.codecool.shop.dao.implementation.memory.SupplierDaoMem;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
@@ -38,11 +39,15 @@ public class ProductController extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        com.codecool.shop.dao.ProductDao productDataStore = ProductDaoMem.getInstance();
-        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        com.codecool.shop.dao.ProductDao productDataStore = dbManager.getProductDao();
+        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = dbManager.getProductCategoryDao();
+        com.codecool.shop.dao.SupplierDao supplierDataStore = dbManager.getSupplierDao();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
+
+
         com.codecool.shop.dao.CartDao cartDataStore = CartDaoMem.getInstance();
+
+
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
@@ -56,20 +61,20 @@ public class ProductController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-//        if (categoryParam == null && supplierParam == null) {
-//            productsToShow = productService.getAll();
-//        } else if (supplierParam == null) {
-//            productsToShow = productService.getProductsForCategory(Integer.parseInt(categoryParam));
-//        } else if (categoryParam == null) {
-//            productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
-//        }
+        if (categoryParam == null && supplierParam == null) {
+            productsToShow = productService.getAll();
+        } else if (supplierParam == null) {
+            productsToShow = productService.getProductsForCategory(Integer.parseInt(categoryParam));
+        } else if (categoryParam == null) {
+            productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
+        }
 
-        productsToShow = dbManager.listAllProduct();
+//        productsToShow = dbManager.listAllProduct();
 
-        context.setVariable("category", productService.getProductCategory(1));
+//        context.setVariable("category", dbManager.getAllCategories());
         context.setVariable("allProducts", productsToShow);
-        context.setVariable("categories", productService.getAllCategories());
-        context.setVariable("suppliers", productService.getAllSuppliers());
+        context.setVariable("categories", dbManager.getAllCategories());
+        context.setVariable("suppliers", dbManager.getAllSuppliers());
         engine.process("product/index.html", context, resp.getWriter());
     }
 
