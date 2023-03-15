@@ -1,6 +1,5 @@
 package com.codecool.shop.config;
 
-import com.codecool.shop.dao.database.DatabaseManager;
 import com.codecool.shop.dao.implementation.memory.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
 import com.codecool.shop.dao.implementation.memory.SupplierDaoMem;
@@ -11,25 +10,13 @@ import com.codecool.shop.model.Supplier;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 
 @WebListener
 public class Initializer implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DatabaseManager dbManager = new DatabaseManager();
-
-        try {
-            dbManager.setup();
-        } catch (SQLException ex) {
-            System.out.println("Cannot connect to database.");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
 
         com.codecool.shop.dao.ProductDao productDataStore = ProductDaoMem.getInstance();
         com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();

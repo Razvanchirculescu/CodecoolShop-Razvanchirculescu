@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.database.DatabaseManager;
 import com.codecool.shop.dao.implementation.memory.CartDaoMem;
 import com.codecool.shop.dao.implementation.memory.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
@@ -15,7 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,17 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        DatabaseManager dbManager = new DatabaseManager();
+
+        try {
+            dbManager.setup();
+        } catch (SQLException ex) {
+            System.out.println("Cannot connect to database.");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         com.codecool.shop.dao.ProductDao productDataStore = ProductDaoMem.getInstance();
         com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
@@ -42,13 +56,15 @@ public class ProductController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-        if (categoryParam == null && supplierParam == null) {
-            productsToShow = productService.getAll();
-        } else if (supplierParam == null) {
-            productsToShow = productService.getProductsForCategory(Integer.parseInt(categoryParam));
-        } else if (categoryParam == null) {
-            productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
-        }
+//        if (categoryParam == null && supplierParam == null) {
+//            productsToShow = productService.getAll();
+//        } else if (supplierParam == null) {
+//            productsToShow = productService.getProductsForCategory(Integer.parseInt(categoryParam));
+//        } else if (categoryParam == null) {
+//            productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
+//        }
+
+        productsToShow = dbManager.listAllProduct();
 
         context.setVariable("category", productService.getProductCategory(1));
         context.setVariable("allProducts", productsToShow);
