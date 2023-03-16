@@ -92,14 +92,10 @@ public class CartController extends HttpServlet {
 //        }
 
 
-
-
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("cartProduct", cartService.getCartProducts());
 
         engine.process("cart/cart.html", context, resp.getWriter());
-
-
     }
 }

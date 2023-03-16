@@ -40,7 +40,7 @@ CREATE TABLE public.user (
       password text
 );
 
-INSERT INTO public.user (id, name) VALUES (0, 'NoUser');
+INSERT INTO public.user (id, name) VALUES (0, 'Guest');
 INSERT INTO  public.cart (user_id, product_list) VALUES (0, ARRAY ['1','2']);
 INSERT INTO public.product_category (name, department, description) VALUES ('lego', 'toys', 'A line of plastic construction toys');
 INSERT INTO public.product_category (name, department, description) VALUES ('Doll', 'Toys', 'Toy for girls');

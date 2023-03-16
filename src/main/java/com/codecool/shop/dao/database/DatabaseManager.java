@@ -1,11 +1,9 @@
 package com.codecool.shop.dao.database;
 
-import com.codecool.shop.dao.CartDaoJdbc;
-import com.codecool.shop.dao.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.ProductDaoJdbc;
-import com.codecool.shop.dao.SupplierDaoJdbc;
+import com.codecool.shop.dao.*;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+import com.codecool.shop.user.User;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
@@ -20,12 +18,18 @@ public class DatabaseManager {
     private ProductCategoryDaoJdbc productCategoryDao;
     private SupplierDaoJdbc supplierDao;
     private CartDaoJdbc cartDao;
+    private UserDaoJdbc userDao;
     private static DatabaseManager instance = null;
+    private User user;
 
 
-    public static DatabaseManager getInstance() {
+    public DatabaseManager(User user) {
+        this.user = user;
+    }
+
+    public static DatabaseManager getInstance(User user) {
         if (instance == null) {
-            instance = new DatabaseManager();
+            instance = new DatabaseManager(user);
         }
         return instance;
     }
@@ -35,7 +39,8 @@ public class DatabaseManager {
         productDao = new ProductDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
-        cartDao = new CartDaoJdbc(dataSource);
+        userDao = new UserDaoJdbc(dataSource);
+        cartDao = new CartDaoJdbc(dataSource, user);
     }
 
     private DataSource connect() throws SQLException, FileNotFoundException {
