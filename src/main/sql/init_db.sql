@@ -107,7 +107,6 @@ VALUES ('Paw Patrol, Chase’s Movie Transforming Toy Car', 10.89, 'USD',
         'TRANSFORMING TOY CAR: Push the spoiler to armor up Chase’s Deluxe Vehicle, revealing a projectile launcher in
         the back! All of the PAW Patrol toy cars have their own transformation!', 3, 4);
 
-
 ALTER TABLE ONLY public.product
     ADD CONSTRAINT fk_product_category_id FOREIGN KEY (product_category_id) REFERENCES public.product_category(id);
 ALTER TABLE ONLY public.product
