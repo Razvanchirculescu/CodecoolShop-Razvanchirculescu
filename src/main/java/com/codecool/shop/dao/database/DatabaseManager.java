@@ -3,10 +3,8 @@ package com.codecool.shop.dao.database;
 import com.codecool.shop.dao.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.ProductDaoJdbc;
 import com.codecool.shop.dao.SupplierDaoJdbc;
-import com.codecool.shop.dao.implementation.memory.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
-import com.codecool.shop.dao.implementation.memory.SupplierDaoMem;
-import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
@@ -44,10 +42,25 @@ public class DatabaseManager {
         return dataSource;
     }
 
-    public List<Product> listAllProduct() {
-        return productDao.getAll();
+    public List<ProductCategory> getAllCategories() {
+        return productCategoryDao.getAll();
     }
 
+    public List<Supplier> getAllSuppliers() {
+        return supplierDao.getAll();
+    }
+
+    public ProductDaoJdbc getProductDao() {
+        return productDao;
+    }
+
+    public ProductCategoryDaoJdbc getProductCategoryDao() {
+        return productCategoryDao;
+    }
+
+    public SupplierDaoJdbc getSupplierDao() {
+        return supplierDao;
+    }
 }
 
 
