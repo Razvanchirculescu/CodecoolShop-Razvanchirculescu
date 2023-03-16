@@ -1,6 +1,7 @@
 package com.codecool.shop.dao;
 
 import com.codecool.shop.model.Product;
+import com.codecool.shop.user.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -10,17 +11,20 @@ import java.util.HashMap;
 public class CartDaoJdbc implements CartDao{
 
     private DataSource dataSource;
+    private User user;
 
-    public CartDaoJdbc(DataSource dataSource) {
+    public CartDaoJdbc(DataSource dataSource, User user) {
         this.dataSource = dataSource;
+        this.user = user;
     }
 
     @Override
     public void add(Product product) {
-        String [] allProducts = getAllProductsForCart();
+        String [] allProducts = getAllProductsForCart(0);
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE cart SET product_list = ? where user_id = 0";
+            String sql = "UPDATE cart SET product_list = ? where user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, 0);
             String[] newList = Arrays.copyOf(allProducts, allProducts.length + 1);
             newList[allProducts.length] = String.valueOf(product.getId());
             Array array = conn.createArrayOf("text", newList);
@@ -32,10 +36,12 @@ public class CartDaoJdbc implements CartDao{
         }
     }
 
-    public String[] getAllProductsForCart() {
+    public String[] getAllProductsForCart(int userId) {
+        userId = 0;
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT product_list FROM cart where user_id = 0";
+            String sql = "SELECT product_list FROM cart where user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
             String[] str_products = new String[0];
             if (rs.next()) {
@@ -68,6 +74,8 @@ public class CartDaoJdbc implements CartDao{
 
     @Override
     public HashMap<Product, Integer> getAll() {
+//        String[] productsId = getAllProductsForCart()
+
       return null;
     }
 

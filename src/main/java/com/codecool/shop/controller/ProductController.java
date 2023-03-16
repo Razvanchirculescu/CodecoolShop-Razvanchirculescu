@@ -1,14 +1,10 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.database.DatabaseManager;
-import com.codecool.shop.dao.implementation.memory.CartDaoMem;
-import com.codecool.shop.dao.implementation.memory.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
-import com.codecool.shop.dao.implementation.memory.SupplierDaoMem;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.database.DatabaseManager;
+import com.codecool.shop.model.Product;
+import com.codecool.shop.service.ProductService;
+import com.codecool.shop.user.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -29,7 +25,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DatabaseManager dbManager = DatabaseManager.getInstance();
+        DatabaseManager dbManager = DatabaseManager.getInstance(new User("Guest"));
 
         try {
             dbManager.setup();
