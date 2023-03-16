@@ -13,7 +13,7 @@ public class CartDaoJdbc implements CartDao{
     private DataSource dataSource;
     private User user;
 
-    public CartDaoJdbc(DataSource dataSource, User user) {
+    public CartDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
         this.user = user;
     }
