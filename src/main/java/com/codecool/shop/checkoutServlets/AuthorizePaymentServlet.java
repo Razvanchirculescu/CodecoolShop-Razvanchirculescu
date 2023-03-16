@@ -39,7 +39,6 @@ public class AuthorizePaymentServlet extends HttpServlet{
             ex.printStackTrace();
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        System.out.println("AUTH PAYM SERV");
     }
 
 }

@@ -19,8 +19,13 @@ signUpButton.addEventListener("click", function (e) {
 })
 
 window.onclick = function (event) {
+    console.log(event.target)
     if (event.target === signUpModal) {
         signUpModal.style.display = "none";
+    }
+
+    if (event.target === loginModal) {
+        loginModal.style.display = "none";
     }
 }
 
@@ -45,11 +50,6 @@ loginButton.addEventListener("click", function (e) {
     }
 })
 
-window.onclick = function (event) {
-    if (event.target === loginModal) {
-        loginModal.style.display = "none";
-    }
-}
 
 loginModalCancelBtn.addEventListener("click", function (e) {
     {

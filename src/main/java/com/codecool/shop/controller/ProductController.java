@@ -47,6 +47,22 @@ public class ProductController extends HttpServlet {
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
 
+        //login details
+        String loginEmail = req.getParameter("login-email");
+        String loginPassword = req.getParameter("login-password");
+        System.out.println(loginEmail + " login email");
+        System.out.println(loginPassword + " signup pass");
+
+        //signUp details
+        String signUpEmail = req.getParameter("signup-email");
+        String signUpPassword = req.getParameter("signup-password");
+        String signUpRepeatPassword = req.getParameter("signup-password-repeat");
+        System.out.println(signUpEmail + " sign up email");
+        System.out.println(signUpPassword + " sign up pass");
+        System.out.println(signUpRepeatPassword + " sign up repeat pass");
+
+
+
         if(productParam != null) {
             System.out.println(productParam);
             cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
