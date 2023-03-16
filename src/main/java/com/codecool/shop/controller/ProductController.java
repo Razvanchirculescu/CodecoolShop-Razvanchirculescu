@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -62,6 +63,16 @@ public class ProductController extends HttpServlet {
         System.out.println(signUpRepeatPassword + " sign up repeat pass");
 
 
+        // session
+
+        HttpSession session = req.getSession();
+        if (loginEmail != null) {
+            session.setAttribute("user", loginEmail);
+            System.out.println(session);
+//            resp.sendRedirect("welcome.jsp?name=" + user);
+        }
+
+
 
         if(productParam != null) {
             System.out.println(productParam);
@@ -88,5 +99,4 @@ public class ProductController extends HttpServlet {
         context.setVariable("suppliers", productService.getAllSuppliers());
         engine.process("product/index.html", context, resp.getWriter());
     }
-
 }
