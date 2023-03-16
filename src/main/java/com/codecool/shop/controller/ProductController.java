@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,6 +52,33 @@ public class ProductController extends HttpServlet {
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
 
+        //login details
+        String loginEmail = req.getParameter("login-email");
+        String loginPassword = req.getParameter("login-password");
+        System.out.println(loginEmail + " login email");
+        System.out.println(loginPassword + " signup pass");
+
+        //signUp details
+        String signUpEmail = req.getParameter("signup-email");
+        String signUpPassword = req.getParameter("signup-password");
+        String signUpRepeatPassword = req.getParameter("signup-password-repeat");
+        System.out.println(signUpEmail + " sign up email");
+        System.out.println(signUpPassword + " sign up pass");
+        System.out.println(signUpRepeatPassword + " sign up repeat pass");
+
+
+        // session
+
+        HttpSession session = req.getSession();
+        if (loginEmail != null) {
+            session.setAttribute("user", loginEmail);
+            System.out.println(session);
+//            resp.sendRedirect("welcome.jsp?name=" + user);
+        }
+
+
+
+        if(productParam != null) {
         if (productParam != null) {
             System.out.println(productParam);
             cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
@@ -74,5 +102,4 @@ public class ProductController extends HttpServlet {
         context.setVariable("suppliers", dbManager.getAllSuppliers());
         engine.process("product/index.html", context, resp.getWriter());
     }
-
 }
