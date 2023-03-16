@@ -83,6 +83,8 @@ public class DatabaseManager {
         return supplierDao;
     }
 
+
+
     public CartDaoJdbc getCartDao() {
         return cartDao;
     }
