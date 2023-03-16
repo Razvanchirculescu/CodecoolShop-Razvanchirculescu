@@ -29,7 +29,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DatabaseManager dbManager = new DatabaseManager();
+        DatabaseManager dbManager = DatabaseManager.getInstance();
 
         try {
             dbManager.setup();
@@ -44,9 +44,13 @@ public class ProductController extends HttpServlet {
         com.codecool.shop.dao.SupplierDao supplierDataStore = dbManager.getSupplierDao();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
 
+//        for (Product product: productService.getAll()) {
+//            System.out.println(product);
+//            productDataStore.add(product);
+//        }
+//        System.out.println(productDataStore);
 
-        com.codecool.shop.dao.CartDao cartDataStore = CartDaoMem.getInstance();
-
+        com.codecool.shop.dao.CartDao cartDataStore = dbManager.getCartDao();
 
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
@@ -55,6 +59,7 @@ public class ProductController extends HttpServlet {
         if(productParam != null) {
             System.out.println(productParam);
             cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
+            System.out.println(cartDataStore);
         }
         List<Product> productsToShow = new ArrayList<>();
 
@@ -69,9 +74,6 @@ public class ProductController extends HttpServlet {
             productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
         }
 
-//        productsToShow = dbManager.listAllProduct();
-
-//        context.setVariable("category", dbManager.getAllCategories());
         context.setVariable("allProducts", productsToShow);
         context.setVariable("categories", dbManager.getAllCategories());
         context.setVariable("suppliers", dbManager.getAllSuppliers());

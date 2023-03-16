@@ -1,5 +1,6 @@
 package com.codecool.shop.dao.database;
 
+import com.codecool.shop.dao.CartDaoJdbc;
 import com.codecool.shop.dao.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.ProductDaoJdbc;
 import com.codecool.shop.dao.SupplierDaoJdbc;
@@ -18,12 +19,23 @@ public class DatabaseManager {
     private ProductDaoJdbc productDao;
     private ProductCategoryDaoJdbc productCategoryDao;
     private SupplierDaoJdbc supplierDao;
+    private CartDaoJdbc cartDao;
+    private static DatabaseManager instance = null;
+
+
+    public static DatabaseManager getInstance() {
+        if (instance == null) {
+            instance = new DatabaseManager();
+        }
+        return instance;
+    }
 
     public void setup() throws SQLException, FileNotFoundException {
         DataSource dataSource = connect();
         productDao = new ProductDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
+        cartDao = new CartDaoJdbc(dataSource);
     }
 
     private DataSource connect() throws SQLException, FileNotFoundException {
@@ -40,6 +52,10 @@ public class DatabaseManager {
         System.out.println("Connection ok.");
 
         return dataSource;
+    }
+
+    public int saveCart() {
+        return cartDao.saveEmptyCart();
     }
 
     public List<ProductCategory> getAllCategories() {
@@ -60,6 +76,10 @@ public class DatabaseManager {
 
     public SupplierDaoJdbc getSupplierDao() {
         return supplierDao;
+    }
+
+    public CartDaoJdbc getCartDao() {
+        return cartDao;
     }
 }
 

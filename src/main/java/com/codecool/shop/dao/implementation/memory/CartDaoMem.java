@@ -20,7 +20,6 @@ public class CartDaoMem implements com.codecool.shop.dao.CartDao {
 
     private CartDaoMem() {}
 
-
     public static CartDaoMem getInstance() {
         if (instance == null) {
             instance = new CartDaoMem();
