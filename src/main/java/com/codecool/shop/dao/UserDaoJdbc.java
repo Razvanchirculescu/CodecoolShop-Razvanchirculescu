@@ -1,14 +1,9 @@
 package com.codecool.shop.dao;
 
-import com.codecool.shop.model.Product;
 import com.codecool.shop.model.Supplier;
 import com.codecool.shop.user.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class UserDaoJdbc implements UserDao{
 

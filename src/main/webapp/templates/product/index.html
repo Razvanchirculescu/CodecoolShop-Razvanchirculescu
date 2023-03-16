@@ -62,9 +62,6 @@
             <button class="dropdown-btn category">Category
                 <i class="bi bi-caret-down-fill"></i>
             </button>
-            <button>Category
-                <i class="bi bi-caret-down-fill"></i>
-            </button>
             <div class="dropdown-container">
                 <div th:each="category,iterStat : ${categories}">
                     <div><a th:href="'/index?category=' + ${category.id}" th:text="${category.name}"></a></div>
