@@ -11,16 +11,14 @@ import java.util.HashMap;
 public class CartDaoJdbc implements CartDao{
 
     private DataSource dataSource;
-    private User user;
 
-    public CartDaoJdbc(DataSource dataSource, User user) {
+    public CartDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.user = user;
     }
 
     @Override
     public void add(Product product) {
-        String [] allProducts = getAllProductsForCart(0);
+        String [] allProducts = getAllProductsForCart();
         try (Connection conn = dataSource.getConnection()) {
             String sql = "UPDATE cart SET product_list = ? where user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -36,12 +34,11 @@ public class CartDaoJdbc implements CartDao{
         }
     }
 
-    public String[] getAllProductsForCart(int userId) {
-        userId = 0;
+    public String[] getAllProductsForCart() {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT product_list FROM cart where user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userId);
+            statement.setInt(1, 0);
             ResultSet rs = statement.executeQuery();
             String[] str_products = new String[0];
             if (rs.next()) {

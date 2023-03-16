@@ -1,6 +1,7 @@
 package com.codecool.shop.model;
 
 import com.codecool.shop.model.Product;
+import com.codecool.shop.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +11,13 @@ import java.util.Map;
 public class Cart extends BaseModel {
 
     private HashMap<Product, Integer> cartDict;
+    private User user;
 
 
-    public Cart (String name) {
+    public Cart (String name, User user) {
         super(name);
         this.cartDict = new HashMap<>();
+        this.user = user;
     }
 
     //adds 1 for each product sected for cart with add to cart button
@@ -26,5 +29,7 @@ public class Cart extends BaseModel {
         return cartDict;
     }
 
-
+    public User getUser() {
+        return user;
+    }
 }

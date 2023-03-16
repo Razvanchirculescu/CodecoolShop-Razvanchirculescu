@@ -4,7 +4,6 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.database.DatabaseManager;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
-import com.codecool.shop.user.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -25,7 +24,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DatabaseManager dbManager = DatabaseManager.getInstance(new User("Guest"));
+        DatabaseManager dbManager = DatabaseManager.getInstance();
 
         try {
             dbManager.setup();
@@ -38,7 +37,7 @@ public class ProductController extends HttpServlet {
         com.codecool.shop.dao.ProductDao productDataStore = dbManager.getProductDao();
         com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = dbManager.getProductCategoryDao();
         com.codecool.shop.dao.SupplierDao supplierDataStore = dbManager.getSupplierDao();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
+        ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
 
 //        for (Product product: productService.getAll()) {
 //            System.out.println(product);
@@ -52,7 +51,7 @@ public class ProductController extends HttpServlet {
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
 
-        if(productParam != null) {
+        if (productParam != null) {
             System.out.println(productParam);
             cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
             System.out.println(cartDataStore);

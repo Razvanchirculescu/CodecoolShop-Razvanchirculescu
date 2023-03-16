@@ -20,16 +20,16 @@ public class DatabaseManager {
     private CartDaoJdbc cartDao;
     private UserDaoJdbc userDao;
     private static DatabaseManager instance = null;
-    private User user;
 
 
-    public DatabaseManager(User user) {
-        this.user = user;
+
+    public DatabaseManager() {
+
     }
 
-    public static DatabaseManager getInstance(User user) {
+    public static DatabaseManager getInstance() {
         if (instance == null) {
-            instance = new DatabaseManager(user);
+            instance = new DatabaseManager();
         }
         return instance;
     }
@@ -40,7 +40,7 @@ public class DatabaseManager {
         supplierDao = new SupplierDaoJdbc(dataSource);
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
         userDao = new UserDaoJdbc(dataSource);
-        cartDao = new CartDaoJdbc(dataSource, user);
+        cartDao = new CartDaoJdbc(dataSource);
     }
 
     private DataSource connect() throws SQLException, FileNotFoundException {
