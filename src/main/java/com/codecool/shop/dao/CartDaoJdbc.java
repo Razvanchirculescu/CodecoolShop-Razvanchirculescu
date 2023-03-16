@@ -4,9 +4,8 @@ import com.codecool.shop.model.Product;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class CartDaoJdbc implements CartDao{
 
@@ -18,12 +17,13 @@ public class CartDaoJdbc implements CartDao{
 
     @Override
     public void add(Product product) {
-        List<String> allCurrentProducts = getAllProductsForCart();
+        String [] allProducts = getAllProductsForCart();
         try (Connection conn = dataSource.getConnection()) {
             String sql = "UPDATE cart SET product_list = ? where user_id = 0";
             PreparedStatement statement = conn.prepareStatement(sql);
-            String[] list = new String[]{String.valueOf(product.getId())};
-            Array array = conn.createArrayOf("text", list);
+            String[] newList = Arrays.copyOf(allProducts, allProducts.length + 1);
+            newList[allProducts.length] = String.valueOf(product.getId());
+            Array array = conn.createArrayOf("text", newList);
             statement.setArray(1, array);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -32,15 +32,15 @@ public class CartDaoJdbc implements CartDao{
         }
     }
 
-    public List<String> getAllProductsForCart() {
+    public String[] getAllProductsForCart() {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT product_list FROM cart where user_id = 0";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
-            List<String> str_products = new ArrayList<>();
+            String[] str_products = new String[0];
             if (rs.next()) {
                 Array products = rs.getArray(1);
-                str_products = (List<String>) products.getArray();
+                str_products = (String[]) products.getArray();
                 for (String str_product : str_products) {
                     System.out.println(str_product);
                 }
