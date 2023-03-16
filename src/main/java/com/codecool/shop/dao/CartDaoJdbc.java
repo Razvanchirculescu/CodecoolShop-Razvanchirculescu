@@ -19,15 +19,22 @@ public class CartDaoJdbc implements CartDao{
     @Override
     public void add(Product product) {
         String [] allProducts = getAllProductsForCart();
+
         try (Connection conn = dataSource.getConnection()) {
             String sql = "UPDATE cart SET product_list = ? where user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, 0);
+
+            statement.setInt(1, 0); //userId = 0, for the first line in cart database
+
             String[] newList = Arrays.copyOf(allProducts, allProducts.length + 1);
             newList[allProducts.length] = String.valueOf(product.getId());
+
             Array array = conn.createArrayOf("text", newList);
-            statement.setArray(1, array);
+
+            statement.setArray(1, array); //set array of id products
+            statement.setInt(2, 0); //user id = 0, select the cart
             statement.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);

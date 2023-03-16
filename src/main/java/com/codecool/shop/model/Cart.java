@@ -14,8 +14,8 @@ public class Cart extends BaseModel {
     private User user;
 
 
-    public Cart (String name, User user) {
-        super(name);
+    public Cart (User user) {
+        this.name = "cart";
         this.cartDict = new HashMap<>();
         this.user = user;
     }

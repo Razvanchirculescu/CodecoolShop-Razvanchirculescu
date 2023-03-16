@@ -2,6 +2,7 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.database.DatabaseManager;
+import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.user.User;
@@ -22,12 +23,23 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
+//        User user = new User("Guest");
+//        Cart cart = new Cart(user);
+//
+//    public Cart getCart() {
+//        return cart;
+//    }
+//
+//    public User getUser() {
+//        return user;
+//    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         DatabaseManager dbManager = DatabaseManager.getInstance();
-//        User user = new User("Guest");
+
+
 
         try {
             dbManager.setup();
@@ -80,12 +92,11 @@ public class ProductController extends HttpServlet {
 
 
         if (productParam != null) {
-            if (productParam != null) {
-                System.out.println(productParam);
-                cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
-                System.out.println(cartDataStore);
-            }
+            System.out.println("productParam: "+productParam);
+            cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
+            System.out.println(cartDataStore);
         }
+
         List<Product> productsToShow = new ArrayList<>();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());

@@ -5,8 +5,10 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.CartDaoJdbc;
 import com.codecool.shop.dao.database.DatabaseManager;
 import com.codecool.shop.dao.implementation.memory.CartDaoMem;
+import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.CartService;
+import com.codecool.shop.user.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -19,6 +21,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
