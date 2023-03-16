@@ -1,6 +1,9 @@
 DROP TABLE IF EXISTS public.product;
 DROP TABLE IF EXISTS public.product_category;
 DROP TABLE IF EXISTS public.supplier;
+DROP TABLE IF EXISTS public.order;
+DROP TABLE IF EXISTS public.user;
+DROP TABLE IF EXISTS public.cart;
 
 CREATE TABLE public.product (
   id serial NOT NULL PRIMARY KEY,
@@ -25,6 +28,20 @@ CREATE TABLE public.supplier (
     description text NOT NULL
 );
 
+CREATE TABLE public.cart (
+     id serial NOT NULL PRIMARY KEY,
+     user_id integer,
+     product_list text[] not null
+);
+
+CREATE TABLE public.user (
+      id serial NOT NULL PRIMARY KEY,
+      name text not null ,
+      password text
+);
+
+INSERT INTO public.user (id, name) VALUES (0, 'NoUser');
+INSERT INTO  public.cart (user_id, product_list) VALUES (0, ARRAY ['1','2']);
 INSERT INTO public.product_category (name, department, description) VALUES ('lego', 'toys', 'A line of plastic construction toys');
 INSERT INTO public.product_category (name, department, description) VALUES ('Doll', 'Toys', 'Toy for girls');
 INSERT INTO public.product_category (name, department, description) VALUES ('Car', 'Toy', 'Toys for boy');
@@ -32,6 +49,7 @@ INSERT INTO public.supplier (name, description) VALUES ('LegoWorld', 'Lego Suppl
 INSERT INTO public.supplier (name, description) VALUES ('Duplo', 'Lego Supplier');
 INSERT INTO public.supplier (name, description) VALUES ('Barbie', 'Barbie Supplier');
 INSERT INTO public.supplier (name, description) VALUES ('MOONTOY', 'Cars');
+
 INSERT INTO public.product (name, defaultprice, currencystring, description, product_category_id, supplier_id)
 VALUES ('LEGO Star Wars - Dark Trooper Attack', 68.99, 'USD',
         'set for Luke Skywalker vs. Dark Troopers battles – Fans can relive Luke Skywalker’s return.', 1, 1);

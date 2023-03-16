@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductDaoJdbc implements ProductDao{
 
     private DataSource dataSource;
+    private List<Product> data = new ArrayList<>();
 
     public ProductDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -22,12 +23,26 @@ public class ProductDaoJdbc implements ProductDao{
 
     @Override
     public void add(Product product) {
-
+        data.add(product);
     }
 
     @Override
     public Product find(int id) {
-        return null;
+        Product product = null;
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT * FROM product WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                product = new Product(rs.getString(2), rs.getBigDecimal(3), rs.getString(4), rs.getString(5),
+                        getCategoryById(rs.getInt(6)), getSupplierById(rs.getInt(7)));
+                product.setId(id);
+            }
+            return product;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
