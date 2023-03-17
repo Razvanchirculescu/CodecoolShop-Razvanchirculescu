@@ -2,6 +2,10 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.database.DatabaseManager;
+import com.codecool.shop.dao.implementation.memory.CartDaoMem;
+import com.codecool.shop.dao.implementation.memory.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
+import com.codecool.shop.dao.implementation.memory.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.user.User;
@@ -26,8 +30,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DatabaseManager dbManager = DatabaseManager.getInstance();
-//        User user = new User("Guest");
+        DatabaseManager dbManager = new DatabaseManager();
 
         try {
             dbManager.setup();
@@ -37,19 +40,11 @@ public class ProductController extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        com.codecool.shop.dao.ProductDao productDataStore = dbManager.getProductDao();
-        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = dbManager.getProductCategoryDao();
-        com.codecool.shop.dao.SupplierDao supplierDataStore = dbManager.getSupplierDao();
-        ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
-
-//        for (Product product: productService.getAll()) {
-//            System.out.println(product);
-//            productDataStore.add(product);
-//        }
-//        System.out.println(productDataStore);
-
-        com.codecool.shop.dao.CartDao cartDataStore = dbManager.getCartDao();
-
+        com.codecool.shop.dao.ProductDao productDataStore = ProductDaoMem.getInstance();
+        com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
+        com.codecool.shop.dao.CartDao cartDataStore = CartDaoMem.getInstance();
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
@@ -71,11 +66,13 @@ public class ProductController extends HttpServlet {
             productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
         }
 
+//        productsToShow = dbManager.listAllProduct();
 
-
+        context.setVariable("category", productService.getProductCategory(1));
         context.setVariable("allProducts", productsToShow);
-        context.setVariable("categories", dbManager.getAllCategories());
-        context.setVariable("suppliers", dbManager.getAllSuppliers());
+        context.setVariable("categories", productService.getAllCategories());
+        context.setVariable("suppliers", productService.getAllSuppliers());
         engine.process("product/index.html", context, resp.getWriter());
     }
+
 }

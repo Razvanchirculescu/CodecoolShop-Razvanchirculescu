@@ -5,10 +5,8 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.CartDaoJdbc;
 import com.codecool.shop.dao.database.DatabaseManager;
 import com.codecool.shop.dao.implementation.memory.CartDaoMem;
-import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.CartService;
-import com.codecool.shop.user.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -17,30 +15,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
 
-    Integer cartDiscount;
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DatabaseManager dbManager = DatabaseManager.getInstance();
+//        DatabaseManager dbManager = DatabaseManager.getInstance();
+//
+//        CartDaoJdbc cartDao = dbManager.getCartDao();
+//        CartService cartService = new CartService(cartDao);
 
-        try {
-            dbManager.setup();
-        } catch (SQLException ex) {
-            System.out.println("Cannot connect to database.");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        CartDaoJdbc cartDao = dbManager.getCartDao();
+        CartDaoMem cartDao = CartDaoMem.getInstance();
         CartService cartService = new CartService(cartDao);
 
 
@@ -85,8 +73,7 @@ public class CartController extends HttpServlet {
 
         String promoCode = req.getParameter("promoCode");
         if(promoCode != null) {
-            cartDiscount = Integer.parseInt(promoCode);
-            cartDao.setDiscount(cartDiscount);
+            cartDao.setDiscount(Integer.parseInt(promoCode));
             resp.sendRedirect("/cart");
         }
 
