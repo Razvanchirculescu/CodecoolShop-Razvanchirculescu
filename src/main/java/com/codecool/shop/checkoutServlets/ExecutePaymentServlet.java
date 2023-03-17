@@ -36,7 +36,6 @@ public class ExecutePaymentServlet extends HttpServlet {
             request.setAttribute("transaction", transaction);
 
             request.getRequestDispatcher("../WEB-INF/JSP/receipt.jsp").forward(request, response);
-            System.out.println("EXECUTE PAYMENT SERV");
         } catch (PayPalRESTException ex) {
             request.setAttribute("../WEB-INF/JSP/errorMessage", ex.getMessage());
             ex.printStackTrace();

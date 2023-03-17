@@ -38,12 +38,13 @@
 </head>
 
 <body>
-
+<a id="session" th:text="${session.values()}"> </a>
 <div id="banner" class="jumbotron text-right">
-
-    </form>
     <form action="cart" method="get">
-        <button type="shoppingCart" style="font-size:40px"><i class="fa fa-shopping-cart"></i></button>
+        <button type="shoppingCart" style="font-size:25px"><i class="fa fa-shopping-cart"></i></button>
+    </form>
+    <form action="logout" method="post">
+        <button type="login" id="logoutButton">Logout</button>
     </form>
     <div id="header-auth">
         <button type="bannerLoginButton" id="loginButton">Login</button>
@@ -53,9 +54,6 @@
 
 
 <div class="container">
-    <!--    <div class="card">-->
-    <!--        <strong th:text="${category.name}">Category Title</strong>-->
-    <!--    </div>-->
     <div id="navbar" class="sidenav">
         <div class="my-navbar">
             <a href="/">Products</a>
@@ -105,20 +103,20 @@
 
 <div id="signUpModal" class="modal">
 
-    <form class="modal-content">
+    <form class="modal-content" action="login" method="post">
         <div class="container">
             <span class="close" id="xCloseSignupModal" title="Close Modal">&times;</span>
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
-            <label for="signup-email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="signup-email" required>
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="username" required>
 
-            <label for="signup-password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="signup-password" required>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
 
-            <label for="signup-password-repeat"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="signup-password-repeat" required>
+            <label><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="password-repeat" required>
             <br>
             <br>
             <br>
@@ -139,14 +137,14 @@
 
 
 <div id="loginModal" class="modal">
-    <form class="modal-content">
+    <form class="modal-content" action="login" method="post">
         <div class="container">
             <span class="close" id="xCloseLoginModal" title="Close Modal">&times;</span>
-            <label for="login-email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="login-email" required>
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="username" required>
 
-            <label for="login-password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="login-password" required>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
             <span class="psw"> <a href="#">Forgot password?</a></span>
             <br>
             <br>

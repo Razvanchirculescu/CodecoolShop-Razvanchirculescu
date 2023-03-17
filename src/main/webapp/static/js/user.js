@@ -69,6 +69,23 @@ xCloseLoginModal.addEventListener("click", function (e) {
 
 
 
+let session = document.getElementById("session")
+
+
+if (session.innerHTML === "[]"){
+
+    document.getElementById('session').style.visibility= 'hidden';
+    document.getElementById("logoutButton").style.visibility = 'hidden'
+}
+
+if (session.innerHTML !== "[]"){
+    document.getElementById('loginButton').style.visibility= 'hidden';
+    document.getElementById('signUpButton').style.visibility= 'hidden';
+    document.getElementById("logoutButton").style.visibility = 'visible'
+
+
+}
+
 
 
 

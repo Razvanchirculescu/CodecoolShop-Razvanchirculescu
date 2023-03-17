@@ -2,7 +2,6 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.database.DatabaseManager;
-import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.user.User;
@@ -28,6 +27,7 @@ public class ProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         DatabaseManager dbManager = DatabaseManager.getInstance();
+//        User user = new User("Guest");
 
         try {
             dbManager.setup();
@@ -54,37 +54,10 @@ public class ProductController extends HttpServlet {
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
 
-        //login details
-        String loginEmail = req.getParameter("login-email");
-        String loginPassword = req.getParameter("login-password");
-        System.out.println(loginEmail + " login email");
-        System.out.println(loginPassword + " signup pass");
-
-        //signUp details
-        String signUpEmail = req.getParameter("signup-email");
-        String signUpPassword = req.getParameter("signup-password");
-        String signUpRepeatPassword = req.getParameter("signup-password-repeat");
-        System.out.println(signUpEmail + " sign up email");
-        System.out.println(signUpPassword + " sign up pass");
-        System.out.println(signUpRepeatPassword + " sign up repeat pass");
-
-
-        // session
-
-        HttpSession session = req.getSession();
-        if (loginEmail != null) {
-            session.setAttribute("user", loginEmail);
-            System.out.println(session);
-//            resp.sendRedirect("welcome.jsp?name=" + user);
-        }
-
-
-        if (productParam != null) {
-            System.out.println("productParam: "+productParam);
+        if(productParam != null) {
+            System.out.println(productParam);
             cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
-            System.out.println(cartDataStore);
         }
-
         List<Product> productsToShow = new ArrayList<>();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
@@ -97,6 +70,8 @@ public class ProductController extends HttpServlet {
         } else if (categoryParam == null) {
             productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
         }
+
+
 
         context.setVariable("allProducts", productsToShow);
         context.setVariable("categories", dbManager.getAllCategories());
