@@ -17,16 +17,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
+
+    Integer cartDiscount;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         DatabaseManager dbManager = DatabaseManager.getInstance();
+
+        try {
+            dbManager.setup();
+        } catch (SQLException ex) {
+            System.out.println("Cannot connect to database.");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         CartDaoJdbc cartDao = dbManager.getCartDao();
         CartService cartService = new CartService(cartDao);
@@ -73,7 +85,8 @@ public class CartController extends HttpServlet {
 
         String promoCode = req.getParameter("promoCode");
         if(promoCode != null) {
-            cartDao.setDiscount(Integer.parseInt(promoCode));
+            cartDiscount = Integer.parseInt(promoCode);
+            cartDao.setDiscount(cartDiscount);
             resp.sendRedirect("/cart");
         }
 

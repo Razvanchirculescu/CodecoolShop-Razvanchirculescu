@@ -23,23 +23,11 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
-//        User user = new User("Guest");
-//        Cart cart = new Cart(user);
-//
-//    public Cart getCart() {
-//        return cart;
-//    }
-//
-//    public User getUser() {
-//        return user;
-//    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         DatabaseManager dbManager = DatabaseManager.getInstance();
-
-
 
         try {
             dbManager.setup();

@@ -11,13 +11,13 @@ import java.util.Map;
 public class Cart extends BaseModel {
 
     private HashMap<Product, Integer> cartDict;
-    private User user;
+    private int user_id;
 
 
-    public Cart (User user) {
+    public Cart (int user_id) {
         this.name = "cart";
         this.cartDict = new HashMap<>();
-        this.user = user;
+        this.user_id = user_id;
     }
 
     //adds 1 for each product sected for cart with add to cart button
@@ -29,7 +29,11 @@ public class Cart extends BaseModel {
         return cartDict;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser() {
+        return user_id;
+    }
+
+    public void setCartDict(HashMap<Product, Integer> cartDict) {
+        this.cartDict = cartDict;
     }
 }

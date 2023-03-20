@@ -4,6 +4,10 @@ DROP TABLE IF EXISTS public.supplier;
 DROP TABLE IF EXISTS public.order;
 DROP TABLE IF EXISTS public.user;
 DROP TABLE IF EXISTS public.cart;
+DROP TABLE IF EXISTS public.cart_b;
+DROP TABLE IF EXISTS public.cartb;
+DROP TABLE IF EXISTS public.cartB;
+
 
 CREATE TABLE public.product (
   id serial NOT NULL PRIMARY KEY,
@@ -34,13 +38,25 @@ CREATE TABLE public.cart (
      product_list text[] not null
 );
 
+CREATE TABLE public.cart_b(
+    id serial NOT NULL PRIMARY KEY,
+    user_id integer,
+    product_id integer,
+    product_quantity integer
+);
+
 CREATE TABLE public.user (
       id serial NOT NULL PRIMARY KEY,
       name text not null ,
-      password text
+      password text,
+      user_discount integer
 );
 
-INSERT INTO public.user (id, name) VALUES (0, 'Guest');
+INSERT INTO public.cart_b(user_id, product_id, product_quantity) VALUES (0, 1,1);
+INSERT INTO public.cart_b(user_id, product_id, product_quantity) VALUES (0, 2,2);
+INSERT INTO public.cart_b(user_id, product_id, product_quantity) VALUES (0, 3,5);
+
+INSERT INTO public.user (id, name, user_discount) VALUES (0, 'Guest',0);
 INSERT INTO  public.cart (user_id, product_list) VALUES (0, ARRAY ['1','2']);
 INSERT INTO public.product_category (name, department, description) VALUES ('lego', 'toys', 'A line of plastic construction toys');
 INSERT INTO public.product_category (name, department, description) VALUES ('Doll', 'Toys', 'Toy for girls');

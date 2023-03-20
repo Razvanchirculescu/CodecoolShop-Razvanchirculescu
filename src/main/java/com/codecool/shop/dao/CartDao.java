@@ -19,6 +19,8 @@ public interface CartDao {
 
     void removeOne (Product product);
 
+    void delAllProductID(Product product);
+
     HashMap<Product, Integer> getAll();
 
 
