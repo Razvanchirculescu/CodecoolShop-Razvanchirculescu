@@ -1,7 +1,6 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.memory;
 
 
-import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -10,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductDaoMem implements ProductDao {
+public class ProductDaoMem implements com.codecool.shop.dao.ProductDao {
 
     private List<Product> data = new ArrayList<>();
     private static ProductDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
+    SINGELTONE !!!
      */
     private ProductDaoMem() {
     }
@@ -29,7 +29,9 @@ public class ProductDaoMem implements ProductDao {
 
     @Override
     public void add(Product product) {
-        product.setId(data.size() + 1);
+
+        int id = data.size()>0?data.get(data.size()-1).getId():0;
+        product.setId(id+1);
         data.add(product);
     }
 

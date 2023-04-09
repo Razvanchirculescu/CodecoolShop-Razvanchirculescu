@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"></html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Check Out</title>
+  <style type="text/css">
+    table { border: 0; }
+    table td { padding: 10px; }
+  </style>
+</head>
+<body>
+<div align="center">
+  <h1>Check Out</h1>
+  <br/>
+  <form action="authorize_payment" method="post">
+
+    <table style="height: auto">
+      <tr>
+        <th>Product/Service:</th>
+        <td width="200px" style="align-content: end" th:text="${products}"></td>
+      </tr>
+      <tr>
+        <th>Sub Total:</th>
+        <td><input type="text" name="subtotal" th:value="${sum}" ></td>
+      </tr>
+      <tr>
+        <th>Shipping:</th>
+        <td><input  type="text" name="shipping" value="0" ></td>
+      </tr>
+      <tr>
+        <th>Tax:</th>
+        <td><input type="text" name="tax" value="0" ></td>
+      </tr>
+      <tr>
+        <th>Total Amount:</th>
+        <td><input type="text" name="total" th:value="${sum}" ></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <form action="checkout" method="get">
+
+            <input type="submit" value="Checkout">
+
+          </form>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script src="static/js/cart.js"></script>
+</body>
+<script src="static/js/cart.js"></script>
+</html>

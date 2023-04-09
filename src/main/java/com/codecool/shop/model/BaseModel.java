@@ -6,11 +6,15 @@ import java.lang.reflect.Field;
 public class BaseModel {
 
     protected int id;
+
     protected String name;
     protected String description;
 
     public BaseModel(String name) {
         this.name = name;
+    }
+
+    public BaseModel() {
     }
 
     public BaseModel(String name, String description) {
