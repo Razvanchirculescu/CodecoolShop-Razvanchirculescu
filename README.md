@@ -41,3 +41,6 @@ If you would like to contribute to the development of Codecool Shop, follow thes
 
 
 ![1](https://drive.google.com/uc?id=1_wKHorFo2zPsYnhDCflkuYmdZTQgarQf)
+![2](https://drive.google.com/uc?id=1U6RND5j4Y-VpBUHQXUdyiq94zIlFhK5D)
+![3](https://drive.google.com/uc?id=1LNi5imzA1OmyM0qlfPINZ9klFSRKnPmx)
+![4](https://drive.google.com/uc?id=1pvoTAENVtH3QdfUGyRpGXVfgZO1_q_Ij)
