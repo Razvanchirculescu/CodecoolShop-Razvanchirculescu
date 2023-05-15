@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/logout")
-public class LogoutController extends HttpServlet {
+    @WebServlet("/logout")
+    public class LogoutController extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/");
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            request.getSession().invalidate();
+            response.sendRedirect(request.getContextPath() + "/");
+        }
+
     }
-
-}

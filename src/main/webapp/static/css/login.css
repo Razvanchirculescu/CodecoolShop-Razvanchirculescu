@@ -244,3 +244,17 @@ body {
     background: #fff !important;
     color: #4285f4 !important;
 }
+
+#signUpButton, #loginButton, #logoutButton {background-color: #4CAF50;}
+
+#shoppingCartButton {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+}
+
+#shoppingCartButton i {
+    margin: 0;
+}
