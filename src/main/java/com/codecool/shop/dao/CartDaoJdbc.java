@@ -1,14 +1,18 @@
 package com.codecool.shop.dao;
 
 import com.codecool.shop.model.Product;
-import com.codecool.shop.user.User;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class CartDaoJdbc implements CartDao{
+public class CartDaoJdbc implements CartDao {
 
     private DataSource dataSource;
 
@@ -18,7 +22,7 @@ public class CartDaoJdbc implements CartDao{
 
     @Override
     public void add(Product product) {
-        String [] allProducts = getAllProductsForCart();
+        String[] allProducts = getAllProductsForCart();
         try (Connection conn = dataSource.getConnection()) {
             String sql = "UPDATE cart SET product_list = ? where user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -66,7 +70,7 @@ public class CartDaoJdbc implements CartDao{
     }
 
     @Override
-    public void removeOne (Product product) {
+    public void removeOne(Product product) {
 
     }
 
@@ -74,11 +78,7 @@ public class CartDaoJdbc implements CartDao{
     public HashMap<Product, Integer> getAll() {
 //        String[] productsId = getAllProductsForCart()
 
-      return null;
-    }
-
-    @Override
-    public void setDiscount(Integer discount) {
+        return null;
     }
 
     @Override
@@ -86,7 +86,11 @@ public class CartDaoJdbc implements CartDao{
         return null;
     }
 
-    public void delAllProductID (Product product) {
+    @Override
+    public void setDiscount(Integer discount) {
+    }
+
+    public void delAllProductID(Product product) {
     }
 
     public int saveEmptyCart() {
@@ -99,7 +103,8 @@ public class CartDaoJdbc implements CartDao{
             ResultSet resultSet = statement.getGeneratedKeys();
             int id = 0;
             if (resultSet.next()) {
-                id = resultSet.getInt(1);            }
+                id = resultSet.getInt(1);
+            }
             resultSet.next();
             return id;
         } catch (SQLException e) {

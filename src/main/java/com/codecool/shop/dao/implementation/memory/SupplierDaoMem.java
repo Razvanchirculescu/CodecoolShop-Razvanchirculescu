@@ -7,11 +7,9 @@ import java.util.List;
 
 public class SupplierDaoMem implements com.codecool.shop.dao.SupplierDao {
 
-    private List<Supplier> data = new ArrayList<>();
     private static SupplierDaoMem instance = null;
+    private List<Supplier> data = new ArrayList<>();
 
-    /* A private Constructor prevents any other class from instantiating.
-     */
     private SupplierDaoMem() {
     }
 

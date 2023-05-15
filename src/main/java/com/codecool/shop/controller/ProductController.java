@@ -8,7 +8,6 @@ import com.codecool.shop.dao.implementation.memory.ProductDaoMem;
 import com.codecool.shop.dao.implementation.memory.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
-import com.codecool.shop.user.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -17,7 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -43,13 +41,13 @@ public class ProductController extends HttpServlet {
         com.codecool.shop.dao.ProductDao productDataStore = ProductDaoMem.getInstance();
         com.codecool.shop.dao.ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         com.codecool.shop.dao.SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDataStore);
+        ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
         com.codecool.shop.dao.CartDao cartDataStore = CartDaoMem.getInstance();
         String categoryParam = req.getParameter("category");
         String supplierParam = req.getParameter("supplier");
         String productParam = req.getParameter("product");
 
-        if(productParam != null) {
+        if (productParam != null) {
             System.out.println(productParam);
             cartDataStore.add(productDataStore.find(Integer.parseInt(productParam)));
         }
@@ -65,8 +63,6 @@ public class ProductController extends HttpServlet {
         } else if (categoryParam == null) {
             productsToShow = productService.getProductsForSupplier(Integer.parseInt(supplierParam));
         }
-
-//        productsToShow = dbManager.listAllProduct();
 
         context.setVariable("category", productService.getProductCategory(1));
         context.setVariable("allProducts", productsToShow);

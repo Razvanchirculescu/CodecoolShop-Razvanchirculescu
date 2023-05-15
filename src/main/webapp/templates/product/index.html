@@ -90,7 +90,7 @@
                     </div>
                     <div class="card-footer mt-auto">
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        <a class="btn btn-success" th:attr="href='/index?product=' + ${prod.id}">
+                        <a  id="cart-button" class="btn btn-success" th:attr="href='/index?product=' + ${prod.id}">
                             <i class="bi bi-cart4"></i>
                         </a>
                     </div>

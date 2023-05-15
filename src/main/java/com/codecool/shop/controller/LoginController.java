@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/login"})
-public class LoginController  extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,12 +34,6 @@ public class LoginController  extends HttpServlet {
             System.out.println(password);
             context.setVariable("session", session);
         }
-
-
-
-
-
-
 
         engine.process("product/index.html", context, resp.getWriter());
     }

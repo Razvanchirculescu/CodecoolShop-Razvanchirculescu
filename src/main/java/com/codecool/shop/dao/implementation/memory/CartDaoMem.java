@@ -10,15 +10,13 @@ import java.util.List;
 
 public class CartDaoMem implements com.codecool.shop.dao.CartDao {
 
-
+    private static CartDaoMem instance = null;
+    private static Integer discount = 0;
     private List<Product> data = new ArrayList<>();
     private HashMap<Product, Integer> dataMap = new HashMap<>();
 
-    private static CartDaoMem instance = null;
-
-    private static Integer discount = 0;
-
-    private CartDaoMem() {}
+    private CartDaoMem() {
+    }
 
     public static CartDaoMem getInstance() {
         if (instance == null) {
@@ -27,20 +25,17 @@ public class CartDaoMem implements com.codecool.shop.dao.CartDao {
         return instance;
     }
 
-
-    public Integer getDiscount () {
+    public Integer getDiscount() {
         return discount;
     }
 
-    public void setDiscount (Integer discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 
     @Override
-//    public void add(Product product) {
-//        data.add(product);
-//    }
-    public void add (Product product) {
+
+    public void add(Product product) {
         dataMap.merge(product, 1, Integer::sum);
     }
 
@@ -49,43 +44,32 @@ public class CartDaoMem implements com.codecool.shop.dao.CartDao {
         dataMap.put(product, quantity);
     }
 
-
-//    @Override
-//    public Product find(int id) {
-//        return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
-//    }
-
-
     @Override
-    public void removeAll () {
+    public void removeAll() {
         this.dataMap = null;
     }
-//    public void remove(int id) {
-//        data.remove(find(id));
-//    }
 
-
-    public void removeOne (Product product) {
-        if (dataMap.get(product)>1) {
-            dataMap.put(product,dataMap.get(product)-1);
+    public void removeOne(Product product) {
+        if (dataMap.get(product) > 1) {
+            dataMap.put(product, dataMap.get(product) - 1);
         } else {
             this.dataMap.remove(product);
         }
 
     }
 
-    public void delAllProductID (Product product) {
+    public void delAllProductID(Product product) {
         this.dataMap.remove(product);
     }
 
     public String getTotalSum() {
 
         BigDecimal count = new BigDecimal("0");
-       for (Product p : dataMap.keySet())
-           count = count.add(p.getDefaultPrice().multiply(new BigDecimal(dataMap.get(p))));
+        for (Product p : dataMap.keySet())
+            count = count.add(p.getDefaultPrice().multiply(new BigDecimal(dataMap.get(p))));
 
 
-        System.out.println(count+"asd");
+        System.out.println(count + "asd");
         return String.valueOf(count);
     }
 

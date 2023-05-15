@@ -9,6 +9,11 @@ const loginModal = document.getElementById('loginModal');
 const loginModalCancelBtn = document.getElementById("loginModalCancelBtn")
 const xCloseLoginModal = document.getElementById('xCloseLoginModal');
 
+const cartButton = document.getElementsByClassName("btn btn-success");
+cartButton.addEventListener("click", function () {
+    console.log("Button clicked!");
+});
+
 
 // signup modal
 
@@ -65,22 +70,18 @@ xCloseLoginModal.addEventListener("click", function (e) {
 })
 
 
-
-
-
-
 let session = document.getElementById("session")
 
 
-if (session.innerHTML === "[]"){
+if (session.innerHTML === "[]") {
 
-    document.getElementById('session').style.visibility= 'hidden';
+    document.getElementById('session').style.visibility = 'hidden';
     document.getElementById("logoutButton").style.visibility = 'hidden'
 }
 
-if (session.innerHTML !== "[]"){
-    document.getElementById('loginButton').style.visibility= 'hidden';
-    document.getElementById('signUpButton').style.visibility= 'hidden';
+if (session.innerHTML !== "[]") {
+    document.getElementById('loginButton').style.visibility = 'hidden';
+    document.getElementById('signUpButton').style.visibility = 'hidden';
     document.getElementById("logoutButton").style.visibility = 'visible'
 
 

@@ -1,9 +1,12 @@
 package com.codecool.shop.dao.database;
 
-import com.codecool.shop.dao.*;
+import com.codecool.shop.dao.CartDaoJdbc;
+import com.codecool.shop.dao.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.ProductDaoJdbc;
+import com.codecool.shop.dao.SupplierDaoJdbc;
+import com.codecool.shop.dao.UserDaoJdbc;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
-import com.codecool.shop.user.User;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
@@ -14,13 +17,12 @@ import java.util.List;
 
 public class DatabaseManager {
 
+    private static DatabaseManager instance = null;
     private ProductDaoJdbc productDao;
     private ProductCategoryDaoJdbc productCategoryDao;
     private SupplierDaoJdbc supplierDao;
     private CartDaoJdbc cartDao;
     private UserDaoJdbc userDao;
-    private static DatabaseManager instance = null;
-
 
 
     public DatabaseManager() {

@@ -11,12 +11,9 @@ import java.util.stream.Collectors;
 
 public class ProductDaoMem implements com.codecool.shop.dao.ProductDao {
 
-    private List<Product> data = new ArrayList<>();
     private static ProductDaoMem instance = null;
+    private List<Product> data = new ArrayList<>();
 
-    /* A private Constructor prevents any other class from instantiating.
-    SINGELTONE !!!
-     */
     private ProductDaoMem() {
     }
 
@@ -30,8 +27,8 @@ public class ProductDaoMem implements com.codecool.shop.dao.ProductDao {
     @Override
     public void add(Product product) {
 
-        int id = data.size()>0?data.get(data.size()-1).getId():0;
-        product.setId(id+1);
+        int id = data.size() > 0 ? data.get(data.size() - 1).getId() : 0;
+        product.setId(id + 1);
         data.add(product);
     }
 

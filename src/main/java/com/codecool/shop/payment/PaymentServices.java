@@ -1,11 +1,23 @@
 package com.codecool.shop.payment;
 
 
-import java.util.*;
-
 import com.codecool.shop.dao.implementation.memory.CartDaoMem;
-import com.paypal.api.payments.*;
-import com.paypal.base.rest.*;
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Details;
+import com.paypal.api.payments.Item;
+import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payer;
+import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PaymentExecution;
+import com.paypal.api.payments.RedirectUrls;
+import com.paypal.api.payments.Transaction;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentServices {
     private static final String CLIENT_ID = "ASgKNupGDGzZxbFOZQd3cW_GDEmlhbNXs5doreq7HwsmAPEmxWzPnDX-l2Ata0Eu7RMlpHbcNq-3Ior4";
@@ -68,9 +80,6 @@ public class PaymentServices {
         CartDaoMem cartDataStore = CartDaoMem.getInstance();
 
         // amount.setTotal(cartDataStore.getTotalSum());
-
-
-
 
 
         amount.setDetails(details);
